@@ -127,14 +127,6 @@ Funded by NIH grant
 
 ### Currently...
 
-Wrapping up compiling a corpus of child speech to use in my research (https://github.com/gracelawley/childes)
-  
-  + Benchmark to compare speech of children with ASD against
-  
-  + There are very few publicly available corpora of child speech
-  
-  + How do you combine  14 different studies `\(\rightarrow\)` 1 corpus?
-
 Finishing up coursework requirements, what I've taken so far:
 
 + Analyzing Sequences
@@ -157,38 +149,64 @@ class: center, middle, inverse
 ---
 ### Pedantic Speech
 
-Characteristics of ASD
+Characteristics of Autism Spectrum Disorder (ASD)
+    
+  + Restricted, repetitive interests
   
   + Difficulties with social communication
-  
-  + Restricted, repetitive interests
 
 Pedantic speech
 
-  + Overly formaly, adult-like speech
+  + Overly formal, adult-like speech
   
   + Using conventional words and phrases in unusual and peculiar ways
   
-  +  __"I ate shrimp for lunch"__ vs. __"I ate crustaceans for lunch"__ 
+  +  __"I ate shrimp for lunch"__ vs. __"I ate crustaceans for lunch"__  (credit to Jill Dolata for this example)
 
 
-.footnote[credit to Jill Dolata for the "crustaceans" example]
 ---
-### How do you measure this?
+### How is this currently measured?
 
-Autism Diagnostic Observation Schedule (ADOS)
+__Autism Diagnostic Observation Schedule (ADOS)__
   
-  + In the Language and Communication section, under details for coding "Stereotyped/Idiosyncratic Use of Words or Phrases":
+  + Standard ASD assessment tool
+  
+  + Series of semi-structured, examiner led activities
+  
+  + Coding scheme for behaviors characteristic of ASD 
+  
+  + Pedantic speech: 
   
   &gt; Use of words or phrases tends to be more repetitive or __formal__ than that of most individuals at the same level of expressive language, but not obviously odd...
   
-Limitations
+__Limitations__
 
-* Based on observational reports from the parents/teachers/clinicians
+* Subjective, inconsistent across examiners 
 
---
+* Based on observational reports from parents/teachers/clinicians
 
-###__Q:__ Can pedantic speech in children with ASD be measured and described by using natural language processing methods?
+---
+### Alternatives?
+
+Brainstorming
+
+* Could try to develop an automated method to quantify this
+
+* ...but capturing something so subtle will be difficult
+
+* How can you get a computer to differentiate "I ate shrimp from lunch" from "I ate crustaceans for lunch?"
+  
+  + Natural langauge processing!
+
+* Lots of different ways to be pedantic
+  + Vocabulary choice
+  + Style of speaking
+  + Tone
+
+* Usually want to smooth outliers, but in this case the outliers are points we are interested in
+
+
+__Q:__ Can pedantic speech in children with ASD be measured and described by using natural language processing methods?
 
 ---
 class: inverse, center, middle
@@ -387,10 +405,19 @@ __Preprocessing__
 
 ---
 
-### Curse of dimensionality
+### To do
 
-* Sparsity 
+Slides:
+* Curse of dimensionality
+* Overview of some dimensionality reduction techniques
+* Examples of each with visualizations
+* Applying MDS to ERPA data
+* Evaluation
+* CSEE program
 
+To add:
+* ERPA metadata summary statistics
+* 
 ---
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>

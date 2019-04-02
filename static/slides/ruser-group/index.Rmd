@@ -6,6 +6,7 @@ date: "August 14th, 2018"
 output: 
   xaringan::moon_reader:
     css: [default, metropolis, metropolis-fonts]
+    lib_dir: libs
     nature:
       highlightStyle: atelier-lakeside-light
       highlightLines: false

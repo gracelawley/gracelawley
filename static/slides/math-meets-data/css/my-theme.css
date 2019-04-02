@@ -47,7 +47,7 @@ thead, tfoot, tr:nth-child(even) { background: #eee }
 }
 
 .inverse h2 {
-  font-family: 'Quattrocento Sans', cursive;
+  font-family: 'Lobster Two', cursive;
   line-height: 1.1;
 }
 
@@ -91,3 +91,35 @@ thead, tfoot, tr:nth-child(even) { background: #eee }
   display: none;
 }
 
+.fancy { 
+  font-family: 'Lobster Two', cursive;
+  font-size: 130%;
+  color: #588C7E; 
+}
+
+.sidebar {
+  font-style: italic;
+  font-size: 90%;
+  color: #588C7E; 
+}
+
+.look {
+  font-weight: bold;
+  color: #588C7E; 
+  
+}
+
+.emphasize {
+  font-family: 'Roboto Slab', serif;
+}
+
+.smaller {
+  font-family: 'Roboto Slab', serif;
+  font-size: 70%;
+  
+}
+
+/* link color */
+a, a > code {
+  color: #588C7E;
+}

@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+  <head>
+    <title>Math Meets Data Science</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Grace Lawley" />
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/my-fonts.css" type="text/css" />
+    <link rel="stylesheet" href="css/my-theme.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Math Meets Data Science
+## Transitioning from math proofs to natural language research
+### Grace Lawley
+### April 4th, 2019
+
+---
+
+
+
+
+### About me
+
+Graduated from Lewis &amp; Clark College in 2017
+
+* Majored in Math
+  
+Computer Science &amp; Engineering PhD student at OHSU
+* September 2017 - now
+
+* Halfway through my 2nd year!
+
+--
+
+Academic Interests
++ Computational Linguistics
+
++ Natural Language Processing
+
++ Discrete Math, Statistics
+
++ Data Science, Data Visualization
+
++ R, Python
+  
+---
+### How I got here
+
+--
+
+__2009 - 2013__
+
+* High school 😐  
+
+* Know I like math &amp; language...can I combine them?
+
+* At the end of my Senior year, I found out about computational linguistics (thanks wikipedia!)
+
+--
+
+__2013 - 2014__
+  + New York University
+  
+  + Took my first linguistics class
+  
+--
+
+__2014 -2015 __
+
+  + Transferred to Lewis &amp; Clark College
+  
+  + Started as a computer science major...
+
+---
+### How I got here
+
+__2014 - 2015__
+
+  + ...took Calculus II, and then switched to math
+  
+  + Translation Theory &amp; Practice
+  
+  + Calculus III, Linear Algebra, Discrete Math
+  
+--
+
+__2015 - 2016__
+  
+  + Independent study: "Introduction to Computational Linguistics"
+  
+  + Math Colloquium Talk: "Atypical Language in Autism: Can we measure it?"
+  
+  + Met Jan van Santen (director of CSLU &amp; my future advisor)
+  
+  + Summer internship at CSLU
+
+
+---
+### How I got here
+
+__2016 - 2017__
+  
+  + Number Theory, Prob/Stats I &amp; II, 
+
+  + CSLU Internship #2, Independent Study
+  
+  + Applied for the PhD program at CSLU
+
+---
+
+### What I do
+
+Center for Spoken Language Understanding, OHSU
+
+  + Automatic speech recognition, image processing, augmentative and alternative communication devices, ...
+
+Funded by NIH grant
+
+  + _Automated Measurement of Language Outcomes for Neurodevelopmental Disorders, R01DC012033_
+  
+  + Autism Spectrum Disorder, Fragile X Syndrome (FXS), Down Syndrome (DS)
+
+---
+
+### Currently...
+
+Finishing up coursework requirements, what I've taken so far:
+
++ Analyzing Sequences
++ Probability &amp; Statistical Inference for Scientists and Engineers
++ Data Science Programming
++ Introduction to Linguistics &amp; Communication Disorders
++ Principles &amp; Practices of Data Visualization
++ Artificial Intelligence
++ Algorithms
++ Natural Language Processing
++ Research Ethics in Computer Science
++ Machine Learning
+
+
+---
+class: center, middle, inverse
+
+## My Current Research
+
+---
+### Pedantic Speech
+
+Characteristics of Autism Spectrum Disorder (ASD)
+    
+  + Restricted, repetitive interests
+  
+  + Difficulties with social communication
+
+Pedantic speech
+
+  + Overly formal, adult-like speech
+  
+  + Using conventional words and phrases in unusual and peculiar ways
+  
+  +  __"I ate shrimp for lunch"__ vs. __"I ate crustaceans for lunch"__  (credit to Jill Dolata for this example)
+
+
+---
+### How is this currently measured?
+
+__Autism Diagnostic Observation Schedule (ADOS)__
+  
+  + Standard ASD assessment tool
+  
+  + Series of semi-structured, examiner led activities
+  
+  + Coding scheme for behaviors characteristic of ASD 
+  
+  + Pedantic speech: 
+  
+  &gt; Use of words or phrases tends to be more repetitive or __formal__ than that of most individuals at the same level of expressive language, but not obviously odd...
+  
+__Limitations__
+
+* Subjective, inconsistent across examiners 
+
+* Based on observational reports from parents/teachers/clinicians
+
+---
+### Alternatives?
+
+Brainstorming
+
+* Could try to develop an automated method to quantify this
+
+* ...but capturing something so subtle will be difficult
+
+* How can you get a computer to differentiate "I ate shrimp from lunch" from "I ate crustaceans for lunch?"
+  
+  + Natural langauge processing!
+
+* Lots of different ways to be pedantic
+  + Vocabulary choice
+  + Style of speaking
+  + Tone
+
+* Usually want to smooth outliers, but in this case the outliers are points we are interested in
+
+
+__Q:__ Can pedantic speech in children with ASD be measured and described by using natural language processing methods?
+
+---
+class: inverse, center, middle
+
+## Language `\(\rightarrow\)` Computer
+
+---
+### Language is complicated...
+
+#### Excerpts a corpus of "confusing or misleading headlines"
+
+
+```
+## [1] "2 SISTERS REUNITED AFTER 18 YEARS AT CHECKOUT COUNTER"
+```
+
+```
+## [1] "ENRAGED COW INJURES FARMER WITH AX"
+```
+
+```
+## [1] "EYE DROPS OFF SHELF"
+```
+
+```
+## [1] "HOSPITALS ARE SUED BY 7 FOOT DOCTORS"
+```
+
+```
+## [1] "INCLUDE YOUR CHILDREN WHEN BAKING COOKIES"
+```
+
+```
+## [1] "KIDS MAKE NUTRITIOUS SNACKS"
+```
+
+```
+## [1] "MAN EATING PIRANHA MISTAKENLY SOLD AS PET FISH"
+```
+
+.footnote[corpus: https://github.com/dariusk/corpora]
+
+
+---
+### Type-Token Ratio (TTR)
+
++ `\(\frac{\text{# unique words}}{\text{total # words}}\)`
+
++ A high TTR reflects a diverse vocabulary
+
+--
+
+#### TTR for some words of wisdom by Oprah Winfrey:
+
+.pull-left[
+"Do the one thing you think you cannot do. Fail at it. Try again. Do better the second time. The only people who never tumble are those who never mount the high wire. This is your moment. Own it."
+
+`\(\#\)` tokens = 39  
+`\(\#\)` types = 30  
+__type-token ratio__ = 0.7692308
+]
+.pull-right[
+"If you neglect to recharge a battery, it dies. And if you run full speed ahead without stopping for water, you lose momentum to finish the race."
+
+`\(\#\)` tokens = 27  
+`\(\#\)` types = 23  
+__type-token ratio__ = 0.8518519
+]
+
+
+.footnote[corpus: https://github.com/dariusk/corpora]
+---
+
+### Mean Length of Utterance (MLU)
+  
++ Average number of morphemes per utterance for 100 utterances
+
+  + Morphemes: "un-break-able"
+
++ Measure of expressive language &amp; language productivity
+
++ Higher MLU reflects a higher level of language proficiency
+
+--
+
+__Brown's Stages of Syntactic and Morphological Development__ (Brown, 1973)
+
+|MLU | Age (months) |
+|:---:|:---:|
+|1.0 - 2.0| 12 - 26|
+|2.0 - 2.5| 27 - 30|
+|2.5 - 3.0| 31 - 34|
+|30 - 3.75| 35 - 40|
+|4.5 + | 47 +|
+
+
+.footnote[Brown, R. (1973). _A First Language: The Early Stages._ London: George Allen &amp; Unwin.]
+
+---
+### Some Ways to Measure Language
+  
+__Term Frequency-Inverse Document Frequency (tf-idf)__
+
++ Weighting scheme used in information retrieval `\(\rightarrow\)` e.g. search engines
+
++ Spärck-Jones, 1972
+
++ (frequency of `\(t\)` in `\(d\)`) x (how important `\(t\)` is across all documents)
+
+--
+
+
+`\(\text{tf}_{t,d} = \begin{cases} 1 + \log_{10}\text{count}(t,d) &amp; \text{if count}(t,d) &gt; 0\\ 0 &amp; \text{otherwise}\end{cases}\)`
+
+`\(\text{idf}_{t} = \log_{10}(\frac{N}{\text{df}_{t}})\)`
+
+`\(\text{w}_{t,d} = \text{tf}_{t,d} \times \text{idf}_{t}\)`
+
+
+.footnote[Spärck Jones, K. (1972). "A Statistical Interpretation of Term Specificity and Its Application in Retrieval". Journal of Documentation. 28: 11–21.]
+
+
+---
+### Term-Document Matrix
+
+* Matrix of frequency counts for each term in every document
+
+
+
+--
+
+__Phrases coined by Shakespeare__
+
++ "All our yesterdays "  
+
++ "All that glitters is not gold "  
+
++ "All's well that ends well "  
+
+
+
+```
+##    all all's ends glitters gold is not our that well yesterdays
+## D1   1     0    0        0    0  0   0   1    0    0          1
+## D2   1     0    0        1    1  1   1   0    1    0          0
+## D3   0     1    1        0    0  0   0   0    1    2          0
+```
+
+---
+### Back to Pedantic Speech
+
+__The data I have__
+
+  + Transcriptions of interactions between examiner and child (ADOS)
+  
+  + Add n's for total transcripts and n's for dx breakdown - ERPA data
+  
+__Preprocessing__
+
+  + Convert all letters to lowercase
+  
+  + Remove all coded words - e.g. "xxx and I went to the park"
+  
+  + Keep contractions as is - e.g. "don't" vs. "do not"
+   
+  + Tokenize
+
+
+---
+### Explore pedantry at unigram level
+
+* Create a term-document matrix
+
+  + Each row in a token (term)
+  
+  + Each column is a child
+  
+  + Each row, column corresponds to the number of times a child said a token
+
+--
+
+* Issues...
+
+  + Lots of zero counts! 
+  
+  + High dimensional matrix
+
+--
+
+
+* Approach
+  
+  1. `\(\log_{10}(x+1)\)` transformation for the zero counts and skew
+  
+  2. Explore dimensionality reduction methods
+
+---
+
+### To do
+
+Slides:
+* Curse of dimensionality
+* Overview of some dimensionality reduction techniques
+* Examples of each with visualizations
+* Applying MDS to ERPA data
+* Evaluation
+* CSEE program
+
+To add:
+* ERPA metadata summary statistics
+* 
+---
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"countIncrementalSlides": true,
+"highlightStyle": "github"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();</script>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

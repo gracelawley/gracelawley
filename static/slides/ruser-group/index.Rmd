@@ -12,6 +12,12 @@ output:
       highlightLines: false
       countIncrementalSlides: false
 ---
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE, echo = FALSE, 
+                      dpi = 300, cache = TRUE, fig.align = "center", 
+                      out.width = "80%", fig.path = "figures/")
+
+```
 
 # The Dataset
 --
@@ -132,7 +138,7 @@ kuczaj_raw$gloss[78:83]
 
 ---
 # The Original Plot
-```{r echo = FALSE, message = FALSE, warning = FALSE, dpi = 300, fig.width = 9, fig.height = 6}
+```{r orig_plot, echo = FALSE, message = FALSE, warning = FALSE, dpi = 300, fig.width = 9, fig.height = 6}
 library(ggridges)
 library(egg)
 
@@ -217,7 +223,7 @@ egg::ggarrange(positive_plot, negative_plot, ncol = 1, nrow = 2)
     * `n_percent = n_sentiment/n_tokens`
 
 --
-```{r echo = FALSE, dpi = 300, fig.width = 10.5, fig.height = 4}
+```{r ages_binned, echo = FALSE, dpi = 300, fig.width = 10.5, fig.height = 4}
 # Sentiments to keep
 sentiment_levels <- c("trust", "joy", "anticipation", 
                       "sadness", "fear", "anger")

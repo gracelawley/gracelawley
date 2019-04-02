@@ -10,9 +10,9 @@ url_custom:
 - name: Github Repo
   url: https://github.com/gracelawley/kuczaj-corpus
 - name: Slides
-  url: slides/ruser_dataviz.html
+  url: slides/ruser-group/index.html
 - name: Raw Slides
-  url: https://raw.githubusercontent.com/gracelawley/gracelawley/master/static/slides/ruser_dataviz.Rmd
+  url: https://raw.githubusercontent.com/gracelawley/gracelawley/master/static/slides/ruser-group/index.Rmd
 
 tags: []
 time_end: 2018-08-14T20:00:00

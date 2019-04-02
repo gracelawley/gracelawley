@@ -116,6 +116,10 @@ thead, tfoot, tr:nth-child(even) { background: #eee }
 .smaller {
   font-family: 'Roboto Slab', serif;
   font-size: 70%;
+}
+
+.bold {
+  font-weight: bold;
   
 }
 

@@ -446,17 +446,18 @@ class: middle
 
 ### Q: How much do they talk?
 
-* Can measure this with .fancy[Mean Length of Utterance (MLU)]
+One way to measure this $\rightarrow$ .fancy[Mean Length of Utterance (MLU)]
 
 * MLU = average number of morphemes per utterance for a sample of 100 utterances
+
+* As a typically developing child gets older, they will produce longer and more complex utterances
 
 * Used as a measure of expressive language, language productivity, and language development
 
   + _Expressive language_ is language used to communicate, while _receptive language_ is the ability to understand language
   
   + All else being equal, a higher MLU reflects a higher level of language proficiency
-  
-* As a typically developing child gets older, they will produce longer and more complex utterances
+
 
 ---
 
@@ -482,17 +483,19 @@ class: middle
 
 ### Q: How repetitive are they being?
 
+One way to measure this $\rightarrow$ .fancy[Type-Token Ratio (TTR)]
+
 * Can talk a lot while not really saying much 
 
   + e.g. "row row row your boat..."
 
-* One way to measure degree of lexical variation is with .fancy[Type-Token Ratio (TTR)]
-
 * $\text{ttr} = \frac{\text{# unique words}}{\text{total # words}}$
 
-* A higher TTR reflects a more diverse vocabulary
+* Measures degree of lexical variation
 
-* If someone says a lot but is very repetitive they will have a lower TTR
+  + A higher TTR reflects a more diverse vocabulary
+
+  + If someone says a lot but is very repetitive they will have a lower TTR
 
 ---
 ```{r echo=FALSE}
@@ -591,13 +594,17 @@ class: middle
 
 ### Q: _What_ are they talking about?
 
-* One way to capture this is by counting the number of occurences of each type that appears
+One way to capture this $\rightarrow$ .fancy[Term-Document Matrix]
 
-* Can do this with a .fancy[Term-Document Matrix]
+* A matrix of frequencies for term (i.e. type) in a collection of documents (i.e. samples, texts, etc.)  
 
-  + A matrix of frequency counts for each term (i.e. type) in every document
+  + Frequencies can be raw counts, transformed counts, weighted counts, etc.
 
-  + .emphasize[Language] $\rightarrow$ .emphasize[matrix of numbers] $\rightarrow$ .emphasize[linear algebra!]
+* Useful for comparing documents to one another
+
+* Can see which words appear frequently and which words appear infrequently
+
+* .emphasize[Language] $\rightarrow$ .emphasize[matrix of numbers] $\rightarrow$ .emphasize[linear algebra!]
 
 ---
 class: middle
@@ -628,7 +635,7 @@ shakespeare48 <- shakespeare[48]
 
 --
 
-.emphasize[Term-Document Matrix:]
+.emphasize[Term-Document Matrix using raw counts:]
 ```{r echo = FALSE}
 shakespeare_df <- tibble(`D1` = shakespeare2,
                          `D2` = shakespeare9, 
@@ -651,6 +658,7 @@ term_doc <- shakespeare_df %>%
 term_doc
 ```
 
+--
 
 .emphasize[Limitations]
 
@@ -658,8 +666,8 @@ term_doc
 
 * Counts for commonly used words like "and", "is", and "the" (a.k.a. _stop words_) will be inflated
 
-  + Could remove these words before analysis
-  + Could use a weighting scheme like .emphasize[tf-idf]!
+  + Could remove these words before analysis,
+  + ...or use a weighting scheme like .emphasize[tf-idf]
 
 
 
@@ -668,7 +676,9 @@ class: middle
 
 .fancy[Term Frequency-Inverse Document Frequency (tf-idf)]
 
-+ "....emphasize[tf-idf] is intended to measure how important a word is to a document in a collection (or corpus) of documents, for example, to one novel in a collection of novels or to one website in a collection of websites." <sup>1<sup>
+>"....tf-idf is intended to measure .emphasize[how important a word is to a document in a collection] (or corpus) of documents, for example, to one novel in a collection of novels or to one website in a collection of websites." <sup>1<sup>
+
+--
 
 * $\text{tf-idf} = \text{tf}(term, doc) \times \text{idf}(term)$
   
@@ -677,21 +687,24 @@ class: middle
   + Term frequency = frequency of $t$ in $d$ 
   
   + Inverse document frequency = how "important" $t$ is across all documents
-    
+  
 + Identifies the words that are used a lot in a document but are not too common overall
 
-  + Words that are frequently used across all documents will have a _lower weight_ while words that are rarely used overall will have a _higher weight_
+  + Words that are frequently used across all documents will have a _lower_ tf-idf value while words that are rarely used overall will have a _higher_ tf-idf value
 
 
 .footnote[[1] https://www.tidytextmining.com/tfidf.html]
 ---
 class: middle
 
+### Back to the Shakespeare example
+
 .emphasize[Term-Document Matrix using raw counts]
 ```{r echo=FALSE}
 term_doc
 ```
 
+--
 
 .emphasize[Term-Document Matrix using tf-idf]
 ```{r echo=FALSE}
@@ -723,7 +736,13 @@ shakespeare_tf_idf %>%
 
 ```
 
+* $\text{tf-idf}(all, \text{D1}) = 1 \rightarrow 0.05$
+* $\text{tf-idf}(glitters, \text{D1}) = 1 \rightarrow 0.23$
+
+
 ---
+
+
 class: inverse, center, middle
 
 ## How can we use these tools <br> to measure pedantic speech?
@@ -733,51 +752,87 @@ class: middle
 ### Measuring pedantic speech
 
 
-Quick recap
-
 * Lots of different ways to be pedantic
 
   + Vocabulary choice
   + Style of speaking
   + Tone
-  
-Approach
-
-* Focus on pedantic speech that is caused by .emphasize[vocabulary choice]
-
-* Hypothesis: Using infrequent/uncommon words $\rightarrow$ pedantic speech
-
-* Create a document-term matrix where a document corresponds to a participant
-
-* Limitations: 
-  + Might not capture 2+ word phrases that are pedantic
-
 
 ---
+class: middle
+### Measuring pedantic speech
 
+* Lots of different ways to be pedantic
 
-### Back to Pedantic Speech
+  + .look[Vocabulary choice]
+  + Style of speaking
+  + Tone
 
-__The data I have__
+.emphasize[Hypothesis: ] Using infrequent/uncommon words $\rightarrow$ pedantic speech
 
-  + Transcriptions of interactions between examiner and child (ADOS)
+---
+class: middle
+
+### The data I have to work with
+
+* Data collected by the .emphasize[UC Davis MIND Institute] (Medical Investigation of Neurodevelopmental Disorders)
+
+* Transcribed conversations (n = 254) between an examiner and a child
+
+  + ~ 10 minutes long
   
-  + Add n's for total transcripts and n's for dx breakdown - ERPA data
+  + Diagnosis groups: ASD, FXS, and DS
   
-__Preprocessing__
+  + Age range: 6-23 years
+
+  + Examiner introduces a series of topics from a provided list
+  
+  + .emphasize[Goal:] child does most of the talking
+
+---
+class: middle
+
+### First, text preprocessing
 
   + Convert all letters to lowercase
   
   + Remove all coded words - e.g. "xxx and I went to the park"
   
-  + Keep contractions as is - e.g. "don't" vs. "do not"
+  + Remove all punctuation except apostrophes
+  
+    + Keep contractions as is - e.g. "don't" vs. "do not"
    
-  + Tokenize
+  + Tokenize into unigrams
 
 
 ---
 
 ### Explore pedantry at unigram level
+
+.emphasize[Hypothesis]
+
+Using infrequent/uncommon words $\rightarrow$ pedantic speech
+
+* Create a document matrix where a document corresponds to a participant
+  
+  + Are interested in the __infrequent__ words
+  
+  + Use a transformed frequency value: $\log(\frac{n_{word}}{n_{total words}} +1)$ 
+  
+  + Decrease dimensions of term-document matrix using various dimensionality reduction methods
+  
+  + Visualize results
+
+--
+
+* Limitations: 
+
+  + Exploratory
+  
+  + Might not capture 2+ word phrases that are pedantic
+  
+
+
 
 * Create a term-document matrix
 

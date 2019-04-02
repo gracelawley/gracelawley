@@ -457,7 +457,9 @@ class: middle, inverse, center
 ---
 class: middle
 
-### Q: How much do they talk?
+### Q: How _much_ do they talk?
+
+--
 
 One way to measure this `\(\rightarrow\)` .fancy[Mean Length of Utterance (MLU)]
 
@@ -494,7 +496,9 @@ __Brown's Stages of Syntactic and Morphological Development__ &lt;sup&gt; 1,2 &l
 
 class: middle
 
-### Q: How repetitive are they being?
+### Q: How _repetitive_ are they being?
+
+--
 
 One way to measure this `\(\rightarrow\)` .fancy[Type-Token Ratio (TTR)]
 
@@ -576,6 +580,8 @@ When in eternal lines to time thou grow’st:
 class: middle
 
 ### Q: _What_ are they talking about?
+
+--
 
 One way to capture this `\(\rightarrow\)` .fancy[Term-Document Matrix]
 
@@ -728,6 +734,9 @@ class: middle
 ---
 class: middle
 
+
+
+
 ### The data I have to work with
 
 * Data collected by the .emphasize[UC Davis MIND Institute] (Medical Investigation of Neurodevelopmental Disorders)
@@ -743,6 +752,31 @@ class: middle
   + Examiner introduces a series of topics from a provided list
   
   + .emphasize[Goal:] child does most of the talking
+  
+  
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; dx &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; n &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; FXS &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 113 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; DS &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 88 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; ASD &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 53 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
 
 ---
 class: middle
@@ -753,83 +787,143 @@ class: middle
   
   + Remove all coded words - e.g. "xxx and I went to the park"
   
-  + Remove all punctuation except apostrophes
-  
-    + Keep contractions as is - e.g. "don't" vs. "do not"
+  + Remove all punctuation except apostrophes (keep contractions as is - e.g. "don't" vs. "do not")
    
-  + Tokenize into unigrams
+  + Tokenize into unigrams  
+
+---
+class: middle, center
+
+### After Preprocessing
+
+.pull-left[
+Top 5 child words
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; token &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; n &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; i &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7124 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; and &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5810 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; the &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3566 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; like &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2890 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; to &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2723 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+]
+
+.pull-right[
+Top 5 examiner words
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; token &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; n &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; you &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9339 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; do &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4749 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; what &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4083 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; about &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3891 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; like &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3882 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+]
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+Total # of child types = 7649  
+
+Total # of examiner types = 3154
 
 
 ---
+class: middle
 
-### Explore pedantry at unigram level
 
-.emphasize[Hypothesis]
+.emphasize[Hypothesis:] 
 
 Using infrequent/uncommon words `\(\rightarrow\)` pedantic speech
 
-* Create a document matrix where a document corresponds to a participant
+.emphasize[Approach:]
+
+1. Create a document matrix where a document corresponds to a participant
   
-  + Are interested in the __infrequent__ words
+2. Use a transformed frequency value: `\(\log(\frac{n_{word}}{n_{total words}} +1)\)` 
   
-  + Use a transformed frequency value: `\(\log(\frac{n_{word}}{n_{total words}} +1)\)` 
+3. Explore dimensionality reduction methods to reduce dimensions of term-document matrix down to 2 dimensions
   
-  + Decrease dimensions of term-document matrix using various dimensionality reduction methods
-  
-  + Visualize results
+4. Visualize results
 
 --
 
-* Limitations: 
+.emphasize[Limitations:]
 
-  + Exploratory
++ Might not capture 2+ word phrases that are pedantic
   
-  + Might not capture 2+ word phrases that are pedantic
++ Exploratory - visualizations are just the first step
   
 
+---
+class: middle
 
+### Examiner &amp; Child Speech
+&lt;img src="figures/unnamed-chunk-12-1.png" width="80%" style="display: block; margin: auto;" /&gt;
 
-* Create a term-document matrix
+---
+class: middle
+### Examiner and Child Speech
+&lt;img src="figures/unnamed-chunk-13-1.png" width="80%" style="display: block; margin: auto;" /&gt;
 
-  + Each row in a token (term)
-  
-  + Each column is a child
-  
-  + Each row, column corresponds to the number of times a child said a token
+---
+class: middle
 
---
+### Child Only
 
-* Issues...
+&lt;img src="figures/unnamed-chunk-14-1.png" width="80%" style="display: block; margin: auto;" /&gt;
 
-  + Lots of zero counts! 
-  
-  + High dimensional matrix
-
---
-
-
-* Approach
-  
-  1. `\(\log_{10}(x+1)\)` transformation for the zero counts and skew
-  
-  2. Explore dimensionality reduction methods
 
 ---
 
-### To do
+### To Do
 
-Slides:
-* Curse of dimensionality
-* Overview of some dimensionality reduction techniques
-* Examples of each with visualizations
-* Applying MDS to ERPA data
-* Evaluation
-* CSEE program
-
-To add:
-* ERPA metadata summary statistics
-* 
----
+* Plots using ERPA data
+  - Double check that I don't have exmainer speech
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

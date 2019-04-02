@@ -23,6 +23,11 @@ library(knitr)
 library(here)
 library(tidytext)
 library(gutenbergr)
+library(dplyr)
+library(MASS)
+library(readr)
+library(ggplot2)
+select <- dplyr::select
 ```
 
 class: middle
@@ -444,7 +449,9 @@ class: middle, inverse, center
 ---
 class: middle
 
-### Q: How much do they talk?
+### Q: How _much_ do they talk?
+
+--
 
 One way to measure this $\rightarrow$ .fancy[Mean Length of Utterance (MLU)]
 
@@ -481,7 +488,9 @@ __Brown's Stages of Syntactic and Morphological Development__ <sup> 1,2 <sup>
 
 class: middle
 
-### Q: How repetitive are they being?
+### Q: How _repetitive_ are they being?
+
+--
 
 One way to measure this $\rightarrow$ .fancy[Type-Token Ratio (TTR)]
 
@@ -594,6 +603,8 @@ class: middle
 
 ### Q: _What_ are they talking about?
 
+--
+
 One way to capture this $\rightarrow$ .fancy[Term-Document Matrix]
 
 * A matrix of frequencies for term (i.e. type) in a collection of documents (i.e. samples, texts, etc.)  
@@ -608,8 +619,6 @@ One way to capture this $\rightarrow$ .fancy[Term-Document Matrix]
 
 ---
 class: middle
-
-### Language $\rightarrow$ Term-Document Matrix
 
 ```{r echo=FALSE}
 shakespeare <- corpora("words/literature/shakespeare_phrases")[[2]]
@@ -773,6 +782,35 @@ class: middle
 ---
 class: middle
 
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+mind_raw <- read_csv("data/mind-conv-t1.csv",
+                 col_types = cols(
+                   participant_id = col_factor(),
+                   dx = col_factor(levels = c("FXS", "DS", "ASD")),
+                   site = col_factor(),
+                   age = col_double(),
+                   age_group = col_factor(levels = c("6 to 11", "6  to 11", "12 to 17", "18 and older"),
+                     order = TRUE),
+                   sample_date = col_date(),
+                   activity = col_factor(),
+                   speaker = col_factor(),
+                   utterance = col_character()))
+
+mind_proc <- mind_raw %>% 
+  mutate(utterance = str_to_lower(utterance),
+         
+         # remove coded words, e.g. "xxx"
+         utterance = str_replace_all(utterance, "x{1,3}", ""),
+         
+         # remove all punctuation but keep apostrophes
+         utterance = str_replace_all(utterance, "[?!^,.//]", ""),
+         
+         # remove "3" from phonetic "3s" and one solo 3
+         utterance = str_replace_all(utterance, "3", ""),
+  )
+```
+
+
 ### The data I have to work with
 
 * Data collected by the .emphasize[UC Davis MIND Institute] (Medical Investigation of Neurodevelopmental Disorders)
@@ -788,6 +826,15 @@ class: middle
   + Examiner introduces a series of topics from a provided list
   
   + .emphasize[Goal:] child does most of the talking
+  
+  
+```{r echo=FALSE}
+mind_proc %>% 
+  distinct(participant_id, dx, age_group) %>% 
+  count(dx) %>% 
+  kable(format="html")
+```
+
 
 ---
 class: middle
@@ -798,81 +845,206 @@ class: middle
   
   + Remove all coded words - e.g. "xxx and I went to the park"
   
-  + Remove all punctuation except apostrophes
-  
-    + Keep contractions as is - e.g. "don't" vs. "do not"
+  + Remove all punctuation except apostrophes (keep contractions as is - e.g. "don't" vs. "do not")
    
-  + Tokenize into unigrams
+  + Tokenize into unigrams  
+
+---
+class: middle, center
+
+### After Preprocessing
+
+.pull-left[
+Top 5 child words
+```{r echo=FALSE}
+child_words <- mind_proc %>% 
+  filter(speaker == "child") %>% 
+  unnest_tokens(token, utterance, token="words") %>% 
+  count(token, sort = TRUE) 
+
+child_words %>% 
+  head(n=5) %>% 
+  kable(format="html")
+```
+]
+
+.pull-right[
+Top 5 examiner words
+```{r echo=FALSE}
+exam_words <- mind_proc %>% 
+  filter(speaker == "exam") %>% 
+  unnest_tokens(token, utterance, token="words") %>% 
+  count(token, sort = TRUE)
+
+exam_words %>% 
+  head(n=5) %>% 
+  kable(format="html")
+```
+]
+<br>
+<br>
+<br>
+<br>
+Total # of child types = `r nrow(child_words)`  
+
+Total # of examiner types = `r nrow(exam_words)`
 
 
 ---
+class: middle
 
-### Explore pedantry at unigram level
 
-.emphasize[Hypothesis]
+.emphasize[Hypothesis:] 
 
 Using infrequent/uncommon words $\rightarrow$ pedantic speech
 
-* Create a document matrix where a document corresponds to a participant
+.emphasize[Approach:]
+
+1. Create a document matrix where a document corresponds to a participant
   
-  + Are interested in the __infrequent__ words
+2. Use a transformed frequency value: $\log(\frac{n_{word}}{n_{total words}} +1)$ 
   
-  + Use a transformed frequency value: $\log(\frac{n_{word}}{n_{total words}} +1)$ 
+3. Explore dimensionality reduction methods to reduce dimensions of term-document matrix down to 2 dimensions
   
-  + Decrease dimensions of term-document matrix using various dimensionality reduction methods
-  
-  + Visualize results
+4. Visualize results
 
 --
 
-* Limitations: 
+.emphasize[Limitations:]
 
-  + Exploratory
++ Might not capture 2+ word phrases that are pedantic
   
-  + Might not capture 2+ word phrases that are pedantic
++ Exploratory - visualizations are just the first step
   
 
+---
+class: middle
+
+### Examiner & Child Speech
+```{r echo=FALSE,warning=FALSE,message=FALSE,results="hide"}
+both_words <- mind_proc %>% 
+  mutate(id = str_c(participant_id, speaker, sep = "_")) %>% # new id
+  select(id, utterance) %>% 
+  unnest_tokens(token, utterance, token="words") %>% 
+  add_count(id, token) %>% 
+  distinct(id, token, .keep_all = TRUE) %>% 
+  group_by(id) %>% 
+  mutate(total = sum(n)) %>% 
+  ungroup() 
 
 
-* Create a term-document matrix
+both_freq <- both_words %>% 
+  mutate(freq = n/total,
+         trns_freq = log10(freq + 1))
 
-  + Each row in a token (term)
-  
-  + Each column is a child
-  
-  + Each row, column corresponds to the number of times a child said a token
+both_termdoc <- both_freq %>% 
+  select(token, id, trns_freq) %>% 
+  spread(key = id, value = trns_freq, fill = 0)
 
---
+both_cor <- both_termdoc %>% 
+  select(-token) %>% 
+  cor()
 
-* Issues...
+both_nm_mds_2d <- isoMDS(d = 1-both_cor, k = 2)
+#both_nm_mds_2d$stress
 
-  + Lots of zero counts! 
-  
-  + High dimensional matrix
+both_info <- mind_raw %>% 
+  mutate(id = str_c(participant_id, speaker, sep = "_")) %>% 
+  distinct(id, speaker, dx) %>% 
+  mutate(new_dx = case_when(
+    speaker == "exam" ~ NA_character_,
+    speaker == "child" ~ as.character(dx)
+  ))
 
---
+
+both_coords <- both_nm_mds_2d$points %>% 
+  as_tibble() %>% 
+  rename(x = V1, y = V2) %>% 
+  bind_cols(both_info)
 
 
-* Approach
-  
-  1. $\log_{10}(x+1)$ transformation for the zero counts and skew
-  
-  2. Explore dimensionality reduction methods
+ggplot(both_coords, aes(x, y, color = speaker)) +
+  geom_point(alpha = 0.5) +
+  theme_minimal() +
+  labs(title = "MDS, MIND conversational language samples, T1",
+       subtitle = "Child & Examiner")
+```
+
+---
+class: middle
+### Examiner and Child Speech
+```{r echo=FALSE}
+ggplot(both_coords, aes(x, y, color = new_dx)) +
+  geom_point(alpha = 0.5) +
+  theme_minimal() +
+  labs(title = "MDS, MIND conversational language samples, T1",
+       subtitle = "Child & Examiner")
+```
+
+---
+class: middle
+
+### Child Only
+
+```{r echo=FALSE,warning=FALSE,message=FALSE,results="hide"}
+child_words <- mind_proc %>% 
+  filter(speaker == "child") %>% 
+  select(-site, -sample_date, -speaker) %>% 
+  unnest_tokens(token, utterance, token="words") %>% 
+  add_count(participant_id, token) %>% 
+  distinct(participant_id, token, .keep_all = TRUE) %>% 
+  group_by(participant_id) %>% 
+  mutate(total = sum(n)) %>% 
+  ungroup() 
+
+child_freq <- child_words %>% 
+  mutate(freq = n/total,
+         trns_freq = log10(freq + 1))
+
+child_termdoc <- child_freq %>% 
+  select(token, participant_id, trns_freq) %>% 
+  spread(key = participant_id, value = trns_freq, fill = 0)
+
+child_cor <- child_termdoc %>% 
+  select(-token) %>% 
+  cor()
+
+nm_mds_2d <- isoMDS(d = 1-child_cor, k = 2)
+nm_mds_2d$stress
+
+child_info <- mind_raw %>% 
+  filter(speaker == "child") %>% 
+  distinct(participant_id, dx)
+
+
+coords <- nm_mds_2d$points %>% 
+  as_tibble() %>% 
+  rename(x = V1, y = V2) %>% 
+  bind_cols(child_info)
+
+
+ggplot(coords, aes(x, y, color = dx)) +
+  geom_point(alpha = 0.5) +
+  theme_minimal() +
+  labs(title = "MDS, MIND conversational language samples, T1",
+       subtitle = "Child Only")
+
+
+# ggplot(coords, aes(x, y, label = dx, color = dx)) +
+#   geom_text(alpha = 0.5) +
+#   theme_minimal() +
+#   labs(title = "MDS, MIND conversational language samples, T1",
+#        subtitle = "Child Only")
+```
+
 
 ---
 
-### To do
+### To Do
 
-Slides:
-* Curse of dimensionality
-* Overview of some dimensionality reduction techniques
-* Examples of each with visualizations
-* Applying MDS to ERPA data
-* Evaluation
-* CSEE program
+* Plots using ERPA data
+  - Double check that I don't have examiner speech 
 
-To add:
-* ERPA metadata summary statistics
-* 
----
+
+
 

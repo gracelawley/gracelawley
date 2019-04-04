@@ -253,7 +253,7 @@ Finishing up coursework requirements, here's what I've taken so far:
 ---
 class: center, middle, inverse
 
-## Research
+## Research 🔎
 
 ---
 class: middle
@@ -593,8 +593,6 @@ One way to capture this `\(\rightarrow\)` .fancy[Term-Document Matrix]
 
 * Can see which words appear frequently and which words appear infrequently
 
-* .emphasize[Language] `\(\rightarrow\)` .emphasize[matrix of numbers] `\(\rightarrow\)` .emphasize[linear algebra!]
-
 ---
 class: middle
 
@@ -627,6 +625,12 @@ class: middle
 
 --
 
+
+.look[Language] `\(\rightarrow\)` .look[matrix of numbers] `\(\rightarrow\)` .look[linear algebra!]
+
+
+--
+
 .emphasize[Limitations]
 
 * Term-Document Matrices are typically sparse and high-dimensional (we will circle back to this later)
@@ -655,7 +659,9 @@ class: middle
   
   + Inverse document frequency = how "important" `\(t\)` is across all documents
   
-+ Identifies the words that are used a lot in a document but are not too common overall
+--
+  
++ Identifies the words that are important in a document and not too common overall
 
   + Words that are frequently used across all documents will have a _lower_ tf-idf value while words that are rarely used overall will have a _higher_ tf-idf value
 
@@ -726,6 +732,8 @@ class: middle
   + .look[Vocabulary choice]
   + Style of speaking
   + Tone
+  
+--
 
 .emphasize[Hypothesis: ] Using infrequent/uncommon words `\(\rightarrow\)` pedantic speech
 
@@ -794,9 +802,12 @@ class: middle
   + Tokenize into unigrams  
 
 ---
-class: middle, center
+class: center
 
 .emphasize[How do type-token ratios vary across participants?]
+
+--
+
 &lt;img src="figures/unnamed-chunk-10-1.png" width="80%" style="display: block; margin: auto;" /&gt;
 
 ---
@@ -955,19 +966,25 @@ class: middle
 
 Using infrequent/uncommon words `\(\rightarrow\)` pedantic speech
 
+--
+
 .fancy[Approach:]
 
-1. Create a document matrix where a document corresponds to a participant
+* Create a document matrix where a document corresponds to a participant
   
-2. Instead of raw counts or tf-idf values, use a transformed frequency value
+* Instead of raw counts or tf-idf values, use a transformed frequency value
 
   + `\(\log(\frac{n_{word}}{n_{total words}} +1)\)` 
   
-3. Explore dimensionality reduction methods to reduce dimensions of term-document matrix from many `\(\rightarrow\)` 2
+--
+
+* Explore dimensionality reduction methods to reduce dimensions of term-document matrix from many `\(\rightarrow\)` 2
 
   + .emphasize[Non-Metric Multidimensional Scaling]
-  
-4. Visualize results
+
+--
+
+* Visualize results
 
 --
 
@@ -983,13 +1000,15 @@ Using infrequent/uncommon words `\(\rightarrow\)` pedantic speech
 ---
 class: middle
 
-### Non-Metric Multidimensional Scaling (nMDS) 
+.fancy[Non-Metric Multidimensional Scaling (nMDS)] - very briefly! ⏱
 
 * One of many dimensionality reduction methods
 
 * Given a .emphasize[matrix of pairwise distances] in M-dimensional space
 
   + Find the projection of the points in N-dimensional space (where N &lt; M) that .emphasize[preserves as much of the pairwise distances as possible]
+
+--
 
 * .look[Points that were close in the M-dimensional space should remain close in the N-dimensional space, while points that were far apart should remain far apart]
 
@@ -1008,7 +1027,7 @@ class: middle
 ---
 class: middle, center, inverse
 
-## Plots!
+## ✨ Plots! ✨
 
 ---
 class: middle
@@ -1047,27 +1066,60 @@ class: middle
 .emphasize[What words did they use that no one else used?]
 
 .pull-left[
-
-```
-## # A tibble: 15 x 1
-##    token       
-##    &lt;chr&gt;       
-##  1 iderman     
-##  2 sp          
-##  3 iderman's   
-##  4 ferris      
-##  5 locking     
-##  6 oppositional
-##  7 sips        
-##  8 poke        
-##  9 mil         
-## 10 weevie      
-## 11 woovie      
-## 12 symbol      
-## 13 grandp      
-## 14 belt        
-## 15 meow
-```
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; token &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; iderman &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; sp &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; iderman's &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; ferris &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; locking &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; oppositional &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; sips &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; poke &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; mil &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; weevie &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; woovie &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; symbol &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; grandp &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; belt &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; meow &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
 ]
 --
 
@@ -1077,7 +1129,9 @@ class: middle
 .look["oppositional"]
 
 .look["iderman" ??]
+
 ]
+
 
 ---
 class: inverse, middle, center
@@ -1086,8 +1140,11 @@ class: inverse, middle, center
 
 ## "A Spiderman who lost his Iderman is a Spiderman who lost his sp"
 
-![](images/iderman.gif)
+&lt;br&gt;
 
+--
+
+&lt;img src="images/iderman.gif" width="70%" style="display: block; margin: auto;" /&gt;
 
 ---
 class: middle

@@ -125,5 +125,8 @@ thead, tfoot, tr:nth-child(even) { background: #eee }
 
 /* link color */
 a, a > code {
-  color: #588C7E;
+  /*color: #588C7E;*/
+  color: #000000
 }
+
+

@@ -311,9 +311,9 @@ class: middle
 
 #### Limitations
 
-* Subjective, inconsistent across examiners 
+* Subjective
 
-* Based on observational reports from parents/teachers/clinicians
+* Inconsistent across examiners 
 
 ---
 class: middle
@@ -403,32 +403,32 @@ class: middle
 
 * "A token is .emphasize[a meaningful unit of text], such as a word, that we are interested in using for analysis" - Text Mining with R
 
-* "A rose is a rose" $\rightarrow$ [a, rose, is, a, rose]
+* "A rose is a rose" $\rightarrow$ {a, rose, is, a, rose}
 
 --
 
-* "aren't" $\rightarrow$ [are, n't], [are, not], [are, nt], or [aren't] ?
+* "aren't" $\rightarrow$ {are, n't}, {are, not}, {are, nt}, or {aren't} ?
 
 --
 
 .fancy[Types]
 
- * "A rose is a rose" $\rightarrow$ [a, rose, is]
+ * "A rose is a rose" $\rightarrow$ {a, rose, is}
 
 ---
 class: middle
 
 .fancy[n-grams]  
 
-* .emphasize[unigrams]: "A rose is a rose" $\rightarrow$ [a, rose, is, a, rose]
+* .emphasize[unigrams]: "A rose is a rose" $\rightarrow$ {a, rose, is, a, rose}
 
 --
 
-* .emphasize[bigrams]: "A rose is a rose" $\rightarrow$ [(a, rose), (rose is), (is, a), (a, rose)]
+* .emphasize[bigrams]: "A rose is a rose" $\rightarrow$ {(a, rose), (rose is), (is, a), (a, rose)}
 
 --
 
-* .emphasize[trigrams]: "A rose is a rose" $\rightarrow$ [a, rose, is), (rose, is, a),...,(is, a, rose)]
+* .emphasize[trigrams]: "A rose is a rose" $\rightarrow$ {(a, rose, is), (rose, is, a),...,(is, a, rose)}
 
 --
 
@@ -783,58 +783,57 @@ class: middle
 class: middle
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
-mind_raw <- read_csv("data/mind-conv-t1.csv",
-                 col_types = cols(
-                   participant_id = col_factor(),
-                   dx = col_factor(levels = c("FXS", "DS", "ASD")),
-                   site = col_factor(),
-                   age = col_double(),
-                   age_group = col_factor(levels = c("6 to 11", "6  to 11", "12 to 17", "18 and older"),
-                     order = TRUE),
-                   sample_date = col_date(),
-                   activity = col_factor(),
-                   speaker = col_factor(),
-                   utterance = col_character()))
+erpa_proc <-read_csv("data/erpa_lc_talk.csv",
+                     col_types = cols(id = col_factor(),
+                                      male = col_factor(), dx = col_factor(),
+                                      ados_module = col_factor(),
+                                      activity = col_factor(),
+                                      token = col_character()))
 
-mind_proc <- mind_raw %>% 
-  mutate(utterance = str_to_lower(utterance),
-         
-         # remove coded words, e.g. "xxx"
-         utterance = str_replace_all(utterance, "x{1,3}", ""),
-         
-         # remove all punctuation but keep apostrophes
-         utterance = str_replace_all(utterance, "[?!^,.//]", ""),
-         
-         # remove "3" from phonetic "3s" and one solo 3
-         utterance = str_replace_all(utterance, "3", ""),
-  )
+erpa_info <- read_csv("data/info_lc-talk.csv",
+                      col_types = cols(id = col_factor(), age = col_double(),
+                                       coding = col_factor(), mlum = col_double(),
+                                       dx = col_factor()))
+
+erpa_words <- erpa_proc %>% 
+  add_count(id, token, sort = TRUE) %>% 
+  distinct(id, token, .keep_all = TRUE) %>% 
+  group_by(id) %>% 
+  mutate(total = sum(n)) %>% 
+  ungroup()
 ```
 
 
 ### The data I have to work with
 
-* Data collected by the .emphasize[UC Davis MIND Institute] (Medical Investigation of Neurodevelopmental Disorders)
+.pull-left[
 
-* Transcribed conversations (n = 254) between an examiner and a child
+* Transcribed ADOS sessions (n = `r nrow(distinct(erpa_proc, id))`)
 
-  + ~ 10 minutes long
+* Two diagnosis groups
+  1. Autism Spectrum Disorder (ASD)
+  2. Typically Developing (TD)
   
-  + Diagnosis groups: ASD, FXS, and DS
+* All participants:
   
-  + Age range: 6-23 years
+  * Age range: 4 - 9 years old
 
-  + Examiner introduces a series of topics from a provided list
-  
-  + .emphasize[Goal:] child does most of the talking
-  
-  
-```{r echo=FALSE}
-mind_proc %>% 
-  distinct(participant_id, dx, age_group) %>% 
+  * Full-scale IQ > 90
+
+  * MLU > 3.0
+
+* Child speech only (examiner speech excluded)
+]
+
+.pull-right[
+<br>
+```{r}
+erpa_proc %>% 
+  distinct(id,dx) %>% 
   count(dx) %>% 
   kable(format="html")
 ```
-
+]
 
 ---
 class: middle
@@ -845,205 +844,324 @@ class: middle
   
   + Remove all coded words - e.g. "xxx and I went to the park"
   
-  + Remove all punctuation except apostrophes (keep contractions as is - e.g. "don't" vs. "do not")
+  + Remove all punctuation except apostrophes 
+      
+      + Keep contractions as is - e.g. "don't" vs. "do not"
    
   + Tokenize into unigrams  
 
 ---
 class: middle, center
 
-### After Preprocessing
+.emphasize[How do type-token ratios vary across participants?]
+```{r echo=FALSE}
+erpa_ttr <- erpa_proc %>% 
+  group_by(id, dx) %>% 
+  mutate(n_types = n_distinct(token),
+         n_total = n()) %>% 
+  select(-token) %>% 
+  distinct(id, dx, .keep_all = TRUE)
+
+ggplot(erpa_ttr, aes(n_total, n_types, color = dx)) +
+  geom_point(alpha = 0.5) +
+  theme_minimal() +
+  labs(x = "total # tokens", y = "# types")
+```
+
+---
+class: middle, center
+
+.emphasize[What are the most common words for each diagnosis group?]
 
 .pull-left[
-Top 5 child words
-```{r echo=FALSE}
-child_words <- mind_proc %>% 
-  filter(speaker == "child") %>% 
-  unnest_tokens(token, utterance, token="words") %>% 
-  count(token, sort = TRUE) 
-
-child_words %>% 
-  head(n=5) %>% 
-  kable(format="html")
+TD group:
+```{r}
+erpa_proc %>% 
+  filter(dx == "TD") %>% 
+  count(token, sort = TRUE) %>% 
+  head(n=10) %>% 
+  kable(format = "html")
 ```
 ]
 
 .pull-right[
-Top 5 examiner words
-```{r echo=FALSE}
-exam_words <- mind_proc %>% 
-  filter(speaker == "exam") %>% 
-  unnest_tokens(token, utterance, token="words") %>% 
-  count(token, sort = TRUE)
-
-exam_words %>% 
-  head(n=5) %>% 
-  kable(format="html")
+ASD group:
+```{r}
+erpa_proc %>% 
+  filter(dx == "ASD") %>% 
+  count(token, sort = TRUE) %>% 
+  head(n=10) %>% 
+  kable(format = "html")
 ```
 ]
-<br>
-<br>
-<br>
-<br>
-Total # of child types = `r nrow(child_words)`  
 
-Total # of examiner types = `r nrow(exam_words)`
+
+
+---
+class: middle, center
+
+
+.emphasize[How many unique types are there <br> for each diagnosis group?]
+```{r}
+erpa_proc %>% 
+  group_by(dx) %>% 
+  summarize(n_types = n_distinct(token)) %>% 
+  kable(format = "html")
+```
+
+--
+<br>
+<br>
+
+.emphasize[How many unique types are there overall?]
+
+`n_types` = `r length(unique(erpa_proc$token))`
 
 
 ---
 class: middle
 
 
-.emphasize[Hypothesis:] 
+.fancy[Hypothesis:] 
 
 Using infrequent/uncommon words $\rightarrow$ pedantic speech
 
-.emphasize[Approach:]
+.fancy[Approach:]
 
 1. Create a document matrix where a document corresponds to a participant
   
-2. Use a transformed frequency value: $\log(\frac{n_{word}}{n_{total words}} +1)$ 
+2. Instead of raw counts or tf-idf values, use a transformed frequency value
+
+  + $\log(\frac{n_{word}}{n_{total words}} +1)$ 
   
-3. Explore dimensionality reduction methods to reduce dimensions of term-document matrix down to 2 dimensions
+3. Explore dimensionality reduction methods to reduce dimensions of term-document matrix from many $\rightarrow$ 2
+
+  + .emphasize[Non-Metric Multidimensional Scaling]
   
 4. Visualize results
 
 --
 
-.emphasize[Limitations:]
+.fancy[Limitations:]
 
 + Might not capture 2+ word phrases that are pedantic
+
++ 2 dimensions might not be enough
   
 + Exploratory - visualizations are just the first step
-  
+
 
 ---
 class: middle
 
-### Examiner & Child Speech
-```{r echo=FALSE,warning=FALSE,message=FALSE,results="hide"}
-both_words <- mind_proc %>% 
-  mutate(id = str_c(participant_id, speaker, sep = "_")) %>% # new id
-  select(id, utterance) %>% 
-  unnest_tokens(token, utterance, token="words") %>% 
-  add_count(id, token) %>% 
-  distinct(id, token, .keep_all = TRUE) %>% 
-  group_by(id) %>% 
-  mutate(total = sum(n)) %>% 
-  ungroup() 
+### Non-Metric Multidimensional Scaling (nMDS) 
 
+* One of many dimensionality reduction methods
 
-both_freq <- both_words %>% 
+* Given a .emphasize[matrix of pairwise distances] in M-dimensional space
+
+  + Find the projection of the points in N-dimensional space (where N < M) that .emphasize[preserves as much of the pairwise distances as possible]
+
+* .look[Points that were close in the M-dimensional space should remain close in the N-dimensional space, while points that were far apart should remain far apart]
+
+--
+
+* The "best" projection is the one that minimizes the .emphasize[stress] value, where
+
+  + $d_{ij}$ is the distance between the $i$ and $j$
+  
+  + $\delta_{ij}$ is the distance between the projections of $i$ and $j$
+
+  + $stress = \frac{1}{\sum_{i=1}^{n-1}\sum_{j=i+1}^{n}\delta_{ij}}\sum_{i=1}^{n-1}\sum_{j=i+1}^{n}\frac{(\delta_{ij}-d_{ij})^2}{\delta_{ij}}$
+  
+* Stress value will be between 0 and 1, with 0 meaning that no distance information was lost. 
+
+---
+class: middle, center, inverse
+
+## Plots!
+
+---
+class: middle
+
+```{r results="hide"}
+# calculate frequency and transform
+erpa_freq <- erpa_words %>% 
   mutate(freq = n/total,
          trns_freq = log10(freq + 1))
 
-both_termdoc <- both_freq %>% 
+# create term-document matrix
+erpa_termdoc <- erpa_freq %>% 
   select(token, id, trns_freq) %>% 
   spread(key = id, value = trns_freq, fill = 0)
 
-both_cor <- both_termdoc %>% 
+# calculate pairwise correlations
+erpa_cor <- erpa_termdoc %>% 
   select(-token) %>% 
   cor()
 
-both_nm_mds_2d <- isoMDS(d = 1-both_cor, k = 2)
-#both_nm_mds_2d$stress
+sammon <- sammon(d = 1-erpa_cor, k=2) 
+stress = sammon$stress
 
-both_info <- mind_raw %>% 
-  mutate(id = str_c(participant_id, speaker, sep = "_")) %>% 
-  distinct(id, speaker, dx) %>% 
-  mutate(new_dx = case_when(
-    speaker == "exam" ~ NA_character_,
-    speaker == "child" ~ as.character(dx)
-  ))
-
-
-both_coords <- both_nm_mds_2d$points %>% 
+coords <- sammon$points %>% 
   as_tibble() %>% 
   rename(x = V1, y = V2) %>% 
-  bind_cols(both_info)
+  bind_cols(erpa_info)
 
-
-ggplot(both_coords, aes(x, y, color = speaker)) +
-  geom_point(alpha = 0.5) +
-  theme_minimal() +
-  labs(title = "MDS, MIND conversational language samples, T1",
-       subtitle = "Child & Examiner")
 ```
 
----
-class: middle
-### Examiner and Child Speech
-```{r echo=FALSE}
-ggplot(both_coords, aes(x, y, color = new_dx)) +
-  geom_point(alpha = 0.5) +
-  theme_minimal() +
-  labs(title = "MDS, MIND conversational language samples, T1",
-       subtitle = "Child & Examiner")
-```
-
----
-class: middle
-
-### Child Only
-
-```{r echo=FALSE,warning=FALSE,message=FALSE,results="hide"}
-child_words <- mind_proc %>% 
-  filter(speaker == "child") %>% 
-  select(-site, -sample_date, -speaker) %>% 
-  unnest_tokens(token, utterance, token="words") %>% 
-  add_count(participant_id, token) %>% 
-  distinct(participant_id, token, .keep_all = TRUE) %>% 
-  group_by(participant_id) %>% 
-  mutate(total = sum(n)) %>% 
-  ungroup() 
-
-child_freq <- child_words %>% 
-  mutate(freq = n/total,
-         trns_freq = log10(freq + 1))
-
-child_termdoc <- child_freq %>% 
-  select(token, participant_id, trns_freq) %>% 
-  spread(key = participant_id, value = trns_freq, fill = 0)
-
-child_cor <- child_termdoc %>% 
-  select(-token) %>% 
-  cor()
-
-nm_mds_2d <- isoMDS(d = 1-child_cor, k = 2)
-nm_mds_2d$stress
-
-child_info <- mind_raw %>% 
-  filter(speaker == "child") %>% 
-  distinct(participant_id, dx)
-
-
-coords <- nm_mds_2d$points %>% 
-  as_tibble() %>% 
-  rename(x = V1, y = V2) %>% 
-  bind_cols(child_info)
-
-
+```{r plot_dx}
 ggplot(coords, aes(x, y, color = dx)) +
-  geom_point(alpha = 0.5) +
+  geom_point(alpha = 0.7, size=2) +
   theme_minimal() +
-  labs(title = "MDS, MIND conversational language samples, T1",
-       subtitle = "Child Only")
+  labs(title = "N-MDS, ADOS Language Samples",
+       subtitle = "with diagnosis", 
+       caption = str_c("stress", round(stress,4), sep = "= ")) +
+  scale_color_manual(name = "DX",
+                     breaks = c("TD", "ASD"),
+                     labels = c("TD", "ASD"),
+                     values = c("#999999", "#56B4E9"))
+```
 
+---
 
-# ggplot(coords, aes(x, y, label = dx, color = dx)) +
-#   geom_text(alpha = 0.5) +
-#   theme_minimal() +
-#   labs(title = "MDS, MIND conversational language samples, T1",
-#        subtitle = "Child Only")
+```{r plot_a4_dx}
+ggplot(coords, aes(x, y, color = coding, shape = dx)) +
+  geom_point(alpha = 0.7, size=2) +
+  theme_minimal() +
+  labs(title = "N-MDS, ADOS Language Samples",
+       subtitle = "with diagnosis and ADOS A4 Coding (out of 2)", 
+       caption = str_c("stress", round(stress,4), sep = "= ")) +
+  scale_color_manual(name = "ADOS A4",
+                     breaks = c(0, 1, 2),
+                     labels = c("0", "1", "2"),
+                     values = c("#999999","red", "#CC79A7")) +
+  scale_shape_discrete(name = "DX")
 ```
 
 
 ---
 
-### To Do
 
-* Plots using ERPA data
-  - Double check that I don't have examiner speech 
+```{r }
+ggplot(coords, aes(x, y, color = coding, shape = dx)) +
+  geom_point(alpha = 0.7, size=2) +
+  theme_minimal() +
+  labs(title = "N-MDS, ADOS Language Samples",
+       subtitle = "with diagnosis and ADOS A4 Coding (out of 2)", 
+       caption = str_c("stress", round(stress,4), sep = "= ")) +
+  scale_color_manual(name = "ADOS A4",
+                     breaks = c(0, 1, 2),
+                     labels = c("0", "1", "2"),
+                     values = c("#999999","red", "#CC79A7")) +
+  scale_shape_discrete(name = "DX") +
+  geom_point(data = coords[coords$id=="OGI-021",],
+             pch = 21, fill = NA, size = 12, color = "black", stroke = 1)
+
+```
+
+
+---
+class: middle
+
+### Zooming in on one child
+
+```{r}
+zoom <- coords %>% 
+  filter(x == max(x) & y == max(y))
+
+zoom_words <- erpa_words %>%
+  filter(id == zoom$id)
+
+zoom_tfidf <- erpa_words %>% 
+  bind_tf_idf(token, id, n) %>% 
+  filter(id == zoom$id)
+```
+
+
+.emphasize[Metadata:]
+* `dx` = `r zoom$dx`  
+* `mlu` = `r zoom$mlum`  
+* `age` = `r zoom$age/12` years old
+
+---
+class: middle
+
+.emphasize[What words did they use that no one else used?]
+
+.pull-left[
+```{r}
+zoom_tfidf %>% 
+  arrange(desc(idf)) %>% 
+  filter(idf == log(87/1)) %>% 
+  select(token)
+```
+]
+--
+
+
+.pull-right[
+
+.look["oppositional"]
+
+.look["iderman" ??]
+]
+
+---
+class: inverse, middle, center
+
+```{r}
+erpa_raw <- read_csv("data/raw_lc_talk.csv")
+
+
+iderman <- erpa_raw %>% 
+  filter(str_detect(utterance, "iderman")) %>% 
+  pull(utterance)
+```
+
+## "`r iderman[4]`"
+
+![](images/iderman.gif)
+
+
+---
+class: middle
+
+## What next?
+
+* Explore bigrams, trigrams, etc.
+
+* Look into examiner speech & frequency of conversational turns
+
+  + Who is talking more? Who talks for longer? 
+  
+* Pronoun usage
+
+  + Always using proper nouns and never pronouns -- pedantic?
+
+* Is there a *source* for pedantic speech? 
+
+  + Modeling language from books? Movies? Parents?
+
+---
+
+
+class: inverse, middle, center
+
+## Thank you!
+
+<br>
+
+gracelawley@gmail.com  
+
+https://grace.rbind.io
+
+<i class='fab fa-github'></i> @gracelawley
+
+<br>
+Slides created via <br>the R package [xaringan](https://github.com/yihui/xaringan)
+
+
 
 
 

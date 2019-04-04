@@ -2,7 +2,7 @@
 title: A Sentiment Analysis of Child Language Acquisition Data
 event: OHSU Data Viz Lab Talks Night - Portland R User Group
 event_url: https://www.meetup.com/portland-r-user-group/events/253069227/
-location: Portland, Oregon
+location: Oregon Health & Science University, Portland, Oregon
 projects:
 - kuczaj_pt2
 
@@ -10,7 +10,7 @@ url_custom:
 - name: Github Repo
   url: https://github.com/gracelawley/kuczaj-corpus
 - name: Slides
-  url: slides/ruser-group/index.html
+  url: slides/ruser-group/
 - name: Raw Slides
   url: https://raw.githubusercontent.com/gracelawley/gracelawley/master/static/slides/ruser-group/index.Rmd
 

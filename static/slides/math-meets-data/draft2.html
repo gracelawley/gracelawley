@@ -127,7 +127,7 @@ class: middle
 
 &gt; "..a multi-disciplinary field that uses scientific methods, processes, algorithms and systems to extract knowledge and insights from structured and unstructured data." &lt;br&gt; .sidebar[Wikipedia]
 
-.footnote[.smaller[&lt;sup&gt;*&lt;/sup&gt; One out of __many__ definitions]]
+.footnote[.smaller[One out of __many__ definitions]]
 
 ---
 class: middle, center, inverse
@@ -183,7 +183,7 @@ __2015 - 2016__
   
   + Math Colloquium Talk: "Atypical Language in Autism: Can we measure it?"
   
-  + Met Jan van Santen - director of Center for Spoken Language Understanding (CSLU) &amp; my future advisor
+  + Met Jan van Santen (director of CSLU &amp; my future advisor)
   
   + Summer internship at CSLU
 
@@ -253,7 +253,7 @@ Finishing up coursework requirements, here's what I've taken so far:
 ---
 class: center, middle, inverse
 
-## Research 🔎
+## Research
 
 ---
 class: middle
@@ -303,9 +303,9 @@ class: middle
 
 #### Limitations
 
-* Subjective
+* Subjective, inconsistent across examiners 
 
-* Inconsistent across examiners 
+* Based on observational reports from parents/teachers/clinicians
 
 ---
 class: middle
@@ -411,32 +411,32 @@ class: middle
 
 * "A token is .emphasize[a meaningful unit of text], such as a word, that we are interested in using for analysis" - Text Mining with R
 
-* "A rose is a rose" `\(\rightarrow\)` {a, rose, is, a, rose}
+* "A rose is a rose" `\(\rightarrow\)` [a, rose, is, a, rose]
 
 --
 
-* "aren't" `\(\rightarrow\)` {are, n't}, {are, not}, {are, nt}, or {aren't} ?
+* "aren't" `\(\rightarrow\)` [are, n't], [are, not], [are, nt], or [aren't] ?
 
 --
 
 .fancy[Types]
 
- * "A rose is a rose" `\(\rightarrow\)` {a, rose, is}
+ * "A rose is a rose" `\(\rightarrow\)` [a, rose, is]
 
 ---
 class: middle
 
 .fancy[n-grams]  
 
-* .emphasize[unigrams]: "A rose is a rose" `\(\rightarrow\)` {a, rose, is, a, rose}
+* .emphasize[unigrams]: "A rose is a rose" `\(\rightarrow\)` [a, rose, is, a, rose]
 
 --
 
-* .emphasize[bigrams]: "A rose is a rose" `\(\rightarrow\)` {(a, rose), (rose is), (is, a), (a, rose)}
+* .emphasize[bigrams]: "A rose is a rose" `\(\rightarrow\)` [(a, rose), (rose is), (is, a), (a, rose)]
 
 --
 
-* .emphasize[trigrams]: "A rose is a rose" `\(\rightarrow\)` {(a, rose, is), (rose, is, a),...,(is, a, rose)}
+* .emphasize[trigrams]: "A rose is a rose" `\(\rightarrow\)` [a, rose, is), (rose, is, a),...,(is, a, rose)]
 
 --
 
@@ -593,8 +593,12 @@ One way to capture this `\(\rightarrow\)` .fancy[Term-Document Matrix]
 
 * Can see which words appear frequently and which words appear infrequently
 
+* .emphasize[Language] `\(\rightarrow\)` .emphasize[matrix of numbers] `\(\rightarrow\)` .emphasize[linear algebra!]
+
 ---
 class: middle
+
+### Language `\(\rightarrow\)` Term-Document Matrix
 
 
 
@@ -622,12 +626,6 @@ class: middle
 ## D3   0     0   0  0   0    0        0    1     1  0   0  1    0   0    0
 ## D4   0     1   0  0   0    1        0    0     0  0   0  0    1   0    2
 ```
-
---
-
-
-.look[Language] `\(\rightarrow\)` .look[matrix of numbers] `\(\rightarrow\)` .look[linear algebra!]
-
 
 --
 
@@ -659,9 +657,7 @@ class: middle
   
   + Inverse document frequency = how "important" `\(t\)` is across all documents
   
---
-  
-+ Identifies the words that are important in a document and not too common overall
++ Identifies the words that are used a lot in a document but are not too common overall
 
   + Words that are frequently used across all documents will have a _lower_ tf-idf value while words that are rarely used overall will have a _higher_ tf-idf value
 
@@ -732,8 +728,6 @@ class: middle
   + .look[Vocabulary choice]
   + Style of speaking
   + Tone
-  
---
 
 .emphasize[Hypothesis: ] Using infrequent/uncommon words `\(\rightarrow\)` pedantic speech
 
@@ -745,27 +739,21 @@ class: middle
 
 ### The data I have to work with
 
-.pull-left[
+* Data collected by the .emphasize[UC Davis MIND Institute] (Medical Investigation of Neurodevelopmental Disorders)
 
-* Transcribed ADOS sessions (n = 87)
+* Transcribed conversations (n = 254) between an examiner and a child
 
-* Two diagnosis groups
-  1. Autism Spectrum Disorder (ASD)
-  2. Typically Developing (TD)
+  + ~ 10 minutes long
   
-* All participants:
+  + Diagnosis groups: ASD, FXS, and DS
   
-  * Age range: 4 - 9 years old
+  + Age range: 6-23 years
 
-  * Full-scale IQ &gt; 90
-
-  * MLU &gt; 3.0
-
-* Child speech only (examiner speech excluded)
-]
-
-.pull-right[
-&lt;br&gt;
+  + Examiner introduces a series of topics from a provided list
+  
+  + .emphasize[Goal:] child does most of the talking
+  
+  
 &lt;table&gt;
  &lt;thead&gt;
   &lt;tr&gt;
@@ -775,16 +763,20 @@ class: middle
  &lt;/thead&gt;
 &lt;tbody&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; TD &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 44 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; FXS &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 113 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; DS &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 88 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:left;"&gt; ASD &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 43 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 53 &lt;/td&gt;
   &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-]
+
 
 ---
 class: middle
@@ -795,28 +787,17 @@ class: middle
   
   + Remove all coded words - e.g. "xxx and I went to the park"
   
-  + Remove all punctuation except apostrophes 
-      
-      + Keep contractions as is - e.g. "don't" vs. "do not"
+  + Remove all punctuation except apostrophes (keep contractions as is - e.g. "don't" vs. "do not")
    
   + Tokenize into unigrams  
 
 ---
-class: center
-
-.emphasize[How do type-token ratios vary across participants?]
-
---
-
-&lt;img src="figures/unnamed-chunk-10-1.png" width="80%" style="display: block; margin: auto;" /&gt;
-
----
 class: middle, center
 
-.emphasize[What are the most common words for each diagnosis group?]
+### After Preprocessing
 
 .pull-left[
-TD group:
+Top 5 child words
 &lt;table&gt;
  &lt;thead&gt;
   &lt;tr&gt;
@@ -826,51 +807,31 @@ TD group:
  &lt;/thead&gt;
 &lt;tbody&gt;
   &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; i &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7124 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
    &lt;td style="text-align:left;"&gt; and &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 4861 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5810 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:left;"&gt; the &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 3410 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; to &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 2124 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; yeah &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1800 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3566 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
    &lt;td style="text-align:left;"&gt; like &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1685 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2890 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; it &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1680 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; then &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1251 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; that &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1168 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; he &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1158 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; you &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1107 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; to &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2723 &lt;/td&gt;
   &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
 ]
 
 .pull-right[
-ASD group:
+Top 5 examiner words
 &lt;table&gt;
  &lt;thead&gt;
   &lt;tr&gt;
@@ -880,308 +841,89 @@ ASD group:
  &lt;/thead&gt;
 &lt;tbody&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; the &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 3564 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; and &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 3393 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; to &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1976 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; yeah &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1688 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; it &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1506 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; that &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1169 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; no &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 1120 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
    &lt;td style="text-align:left;"&gt; you &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 983 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9339 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; in &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 916 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; do &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4749 &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; this &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 856 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; what &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4083 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; about &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3891 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; like &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3882 &lt;/td&gt;
   &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
 ]
-
-
-
----
-class: middle, center
-
-
-.emphasize[How many unique types are there &lt;br&gt; for each diagnosis group?]
-&lt;table&gt;
- &lt;thead&gt;
-  &lt;tr&gt;
-   &lt;th style="text-align:left;"&gt; dx &lt;/th&gt;
-   &lt;th style="text-align:right;"&gt; n_types &lt;/th&gt;
-  &lt;/tr&gt;
- &lt;/thead&gt;
-&lt;tbody&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; TD &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 4412 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; ASD &lt;/td&gt;
-   &lt;td style="text-align:right;"&gt; 4438 &lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
---
 &lt;br&gt;
 &lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+Total # of child types = 7649  
 
-.emphasize[How many unique types are there overall?]
-
-`n_types` = 6296
+Total # of examiner types = 3154
 
 
 ---
 class: middle
 
 
-.fancy[Hypothesis:] 
+.emphasize[Hypothesis:] 
 
 Using infrequent/uncommon words `\(\rightarrow\)` pedantic speech
 
---
+.emphasize[Approach:]
 
-.fancy[Approach:]
-
-* Create a document matrix where a document corresponds to a participant
+1. Create a document matrix where a document corresponds to a participant
   
-* Instead of raw counts or tf-idf values, use a transformed frequency value
-
-  + `\(\log(\frac{n_{word}}{n_{total words}} +1)\)` 
+2. Use a transformed frequency value: `\(\log(\frac{n_{word}}{n_{total words}} +1)\)` 
   
---
-
-* Explore dimensionality reduction methods to reduce dimensions of term-document matrix from many `\(\rightarrow\)` 2
-
-  + .emphasize[Non-Metric Multidimensional Scaling]
+3. Explore dimensionality reduction methods to reduce dimensions of term-document matrix down to 2 dimensions
+  
+4. Visualize results
 
 --
 
-* Visualize results
-
---
-
-.fancy[Limitations:]
+.emphasize[Limitations:]
 
 + Might not capture 2+ word phrases that are pedantic
-
-+ 2 dimensions might not be enough
   
 + Exploratory - visualizations are just the first step
-
-
----
-class: middle
-
-.fancy[Non-Metric Multidimensional Scaling (nMDS)] - very briefly! ⏱
-
-* One of many dimensionality reduction methods
-
-* Given a .emphasize[matrix of pairwise distances] in M-dimensional space
-
-  + Find the projection of the points in N-dimensional space (where N &lt; M) that .emphasize[preserves as much of the pairwise distances as possible]
-
---
-
-* .look[Points that were close in the M-dimensional space should remain close in the N-dimensional space, while points that were far apart should remain far apart]
-
---
-
-* The "best" projection is the one that minimizes the .emphasize[stress] value, where
-
-  + `\(d_{ij}\)` is the distance between the `\(i\)` and `\(j\)`
   
-  + `\(\delta_{ij}\)` is the distance between the projections of `\(i\)` and `\(j\)`
-
-  + `\(stress = \frac{1}{\sum_{i=1}^{n-1}\sum_{j=i+1}^{n}\delta_{ij}}\sum_{i=1}^{n-1}\sum_{j=i+1}^{n}\frac{(\delta_{ij}-d_{ij})^2}{\delta_{ij}}\)`
-  
-* Stress value will be between 0 and 1, with 0 meaning that no distance information was lost. 
-
----
-class: middle, center, inverse
-
-## ✨ Plots! ✨
 
 ---
 class: middle
 
-
-
-&lt;img src="figures/plot_dx-1.png" width="80%" style="display: block; margin: auto;" /&gt;
-
----
-
-&lt;img src="figures/plot_a4_dx-1.png" width="80%" style="display: block; margin: auto;" /&gt;
-
+### Examiner &amp; Child Speech
+&lt;img src="figures/unnamed-chunk-12-1.png" width="80%" style="display: block; margin: auto;" /&gt;
 
 ---
-
-
-&lt;img src="figures/unnamed-chunk-15-1.png" width="80%" style="display: block; margin: auto;" /&gt;
-
+class: middle
+### Examiner and Child Speech
+&lt;img src="figures/unnamed-chunk-13-1.png" width="80%" style="display: block; margin: auto;" /&gt;
 
 ---
 class: middle
 
-### Zooming in on one child
+### Child Only
 
-
-
-
-.emphasize[Metadata:]
-* `dx` = ASD  
-* `mlu` = 3.04  
-* `age` = 6 years old
-
----
-class: middle
-
-.emphasize[What words did they use that no one else used?]
-
-.pull-left[
-&lt;table&gt;
- &lt;thead&gt;
-  &lt;tr&gt;
-   &lt;th style="text-align:left;"&gt; token &lt;/th&gt;
-  &lt;/tr&gt;
- &lt;/thead&gt;
-&lt;tbody&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; iderman &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; sp &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; iderman's &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; ferris &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; locking &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; oppositional &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; sips &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; poke &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; mil &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; weevie &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; woovie &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; symbol &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; grandp &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; belt &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:left;"&gt; meow &lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-]
---
-
-
-.pull-right[
-
-.look["oppositional"]
-
-.look["iderman" ??]
-
-]
+&lt;img src="figures/unnamed-chunk-14-1.png" width="80%" style="display: block; margin: auto;" /&gt;
 
 
 ---
-class: inverse, middle, center
 
+### To Do
 
-
-## "A Spiderman who lost his Iderman is a Spiderman who lost his sp"
-
-&lt;br&gt;
-
---
-
-&lt;img src="images/iderman.gif" width="70%" style="display: block; margin: auto;" /&gt;
-
----
-class: middle
-
-## What next?
-
-* Explore bigrams, trigrams, etc.
-
-* Look into examiner speech &amp; frequency of conversational turns
-
-  + Who is talking more? Who talks for longer? 
-  
-* Pronoun usage
-
-  + Always using proper nouns and never pronouns -- pedantic?
-
-* Is there a *source* for pedantic speech? 
-
-  + Modeling language from books? Movies? Parents?
-
----
-
-
-class: inverse, middle, center
-
-## Thank you!
-
-&lt;br&gt;
-
-gracelawley@gmail.com  
-
-https://grace.rbind.io
-
-&lt;i class='fab fa-github'&gt;&lt;/i&gt; @gracelawley
-
-&lt;br&gt;
-Slides created via &lt;br&gt;the R package [xaringan](https://github.com/yihui/xaringan)
+* Plots using ERPA data
+  - Double check that I don't have exmainer speech
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

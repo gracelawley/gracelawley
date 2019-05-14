@@ -15,3 +15,5 @@ tidytext
 gutenbergr
 rcorpora
 bindrcpp
+MASS
+ggforce

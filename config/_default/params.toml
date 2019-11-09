@@ -12,7 +12,7 @@ day_night = true
 font = "grace"
 
 # Description for social sharing and search engines. If undefined, superuser role is used in place.
-description = ""
+description = "Personal website of Grace Lawley."
 
 # Default image for social sharing and search engines. Place image in `static/img/` folder and specify image name here.
 sharing_image = "portrait.jpg"
@@ -27,10 +27,8 @@ logo = ""
 # Enable global source code highlighting? true/false
 # Documentation: https://sourcethemes.com/academic/docs/writing-markdown-latex/#highlighting-options
 highlight = true
-highlight_languages = ["r"]  # Add support for highlighting additional languages
-highlight_style = "solarized-dark"
-#highlight_style = "gruvbox-dark"
-#highlight_style = "nord"  # For supported styles, see https://cdnjs.com/libraries/highlight.js/
+highlight_languages = ["r", "bash","markdown"]  # Add support for highlighting additional languages
+highlight_style = "solarized-dark" # For supported styles, see https://cdnjs.com/libraries/highlight.js/
 
 
 # Enable global LaTeX math rendering?
@@ -40,7 +38,7 @@ math = true
 # Privacy pack
 #   Show a cookie consent message to visitors
 #   Anonymize IP in Google Analytics (if enabled)
-privacy_pack = false
+privacy_pack = true
 
 # Date and time format (refer to https://sourcethemes.com/academic/docs/customization/#date-format )
 #   Examples: "Mon, Jan 2, 2006" or "2006-01-02"
@@ -53,17 +51,15 @@ time_format = "3:04 PM"
 ############################
 
 # Enter contact details (optional). To hide a field, clear it to "".
-email = "gracelawley@gmail.com"
-#phone = "888 888 88 88"
-#address = "Building 1 Room 1, Stanford University, California, 90210, USA"
+email = "lawley@ohsu.edu"
+phone = ""
+address = ""
 
 # Office hours: use `<br>` to insert a line break, or set to "" to remove office hours
-#office_hours = """Monday 10:00 to 13:00<br>
-#                  Wednesday 09:00 to 10:00<br>
-#                  Otherwise email to book an appointment"""
+office_hours = ""
 
 # Enter an optional link for booking appointments (e.g. calendly.com).
-#appointment_url = ""
+appointment_url = ""
 
 # Contact links
 #   Set to `[]` to disable, or comment out unwanted lines with a hash `#`.

@@ -1,7 +1,7 @@
 ---
 active: true
 author: Admin
-title: Biography
+title: " "
 weight: 5
 widget: about
 ---

@@ -5,8 +5,8 @@ location: Oregon Health and Science University, Portland, Oregon - GH47
   
 tags: []
 
-time_start: 2019-05-14T11:45:00
-time_end: 2019-05-14T13:00:00
+date: 2019-05-14T11:45:00
+date_end: 2019-05-14T13:00:00
 
 links:
 - icon: images
@@ -21,7 +21,6 @@ abstract_short: "An automated method for measuring pedantic speech in the langua
 
 all_day: false
 authors: []
-date: "2017-01-01T00:00:00-08:00" # schedule publish date
 draft: false
 featured: false
 math: true

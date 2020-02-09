@@ -1,19 +1,20 @@
 ---
-title: "Kuczaj Corpus Sentiment Analysis, part 1 "
+title: "Kuczaj Corpus Sentiment Analysis, pt 1"
+author: [grace]
+projects: [kuczaj-sentiment-analysis]
 date: "2018-06-17"
-output: html_document
-summary: A sentiment analysis of child language acquisition data using the Kuczaj Corpus from the CHILDES database that I did for my final visualization project for CS 632.
-tags:
-- R
+output: blogdown::html_page
+summary: "A sentiment analysis of child language acquisition data using the Kuczaj Corpus from the CHILDES database that I did for my final visualization project for CS 632."
 image:
   preview_only: true
+bibliography: [papers.bib]
+link-citations: true
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, message = FALSE,
                       fig.height = 8, fig.width = 10)
 ```
-
 
 # Ridgeline Plot
 ```{r intial plot, echo = FALSE}
@@ -248,7 +249,7 @@ tokens_raw <- kuczaj %>%
   unnest_tokens(output = word, input = utt)
 ```
 
-Since text data can be difficult to visualize raw, especially if you have a lot of it, I chose to visualize the emotion in the text. I performed a sentiment analysis with the `"nrc"` sentiment lexicon included in the `tidytext` package. The [NRC Word-Emotion Association Lexicon](http://saifmohammad.com/WebPages/NRC-Emotion-Lexicon.htm) classifies words into 10 different sentiment categories: `anger`, `anticipation`, `disgust`, `fear`, `joy`, `negative`, `positive`, `sadness`, `surprise`, and `trust`.
+Since text data can be difficult to visualize raw, especially if you have a lot of it, I chose to visualize the emotion in the text. I performed a sentiment analysis with the `"nrc"` sentiment lexicon included in the `tidytext` package. The [NRC Word-Emotion Association Lexicon](http://saifmohammad.com/WebPages/NRC-Emotion-Lexicon.htm) -@mohammad13 classifies words into 10 different sentiment categories: `anger`, `anticipation`, `disgust`, `fear`, `joy`, `negative`, `positive`, `sadness`, `surprise`, and `trust`.
 
 After initializing the lexicon, I combined it with the tokens using an `dplyr::inner_join`. Only the tokens that occured in both dataframes were kept, while all other tokens were removed.
 
@@ -334,8 +335,9 @@ This plot is the result of an purely exploratory analysis venture that was limit
 # An Early Draft
 This is an early draft plot that came before the sentiments were grouped into "positive" and "negative" and before I altered the general plot composition and colors. I had already chosen to reduce the total number of sentiments, but had only reduced it down to 8 for this plot. I decided to separate the sentiments into *positive* and *negative* groups and realizing that having them all on the same plot made it difficult to understand what was the plot was showing at a first glance.
 ```{r early draft}
-# Loading package for colors
-library(beyonce)
+# Using the beyonce package for colors
+# devtools::install_github("dill/beyonce")
+library(beyonce) 
 
 # Making the plot
 nrc_df %>% 

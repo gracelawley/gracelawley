@@ -1,8 +1,8 @@
 ---
-title: "Multidimensional Scaling with Food Emoji 🥙🥚🥗🥓🥝🥒🦑🥖🥖🥕🥓🥘🥑🦐🥜🥜"
-author: "Grace Lawley"
-date: "2019-02-22"
-output: html_document
+title: 'Multidimensional Scaling with Food Emoji 🥘🦐🦑'
+author: [grace]
+date: '2019-02-22'
+output: blogdown::html_page
 ---
 
 <script src="/rmarkdown-libs/kePrint/kePrint.js"></script>
@@ -14,7 +14,7 @@ output: html_document
 <p>Given a similarity matrix (e.g. a distance matrix), MDS projects the data points into an N-dimensional space while minimizing the amount of similarity information lost. In the ideal case, the closer the projected points are to one another, the more similar the are while the farther apart they are, the less similar they are. MDS can reveal similarity patterns in your data that were not previously obvious.</p>
 </div>
 <div id="the-data" class="section level1">
-<h1>The data 🥜🥗🥑🥐🥝🥖🦐🥘🥕🥘</h1>
+<h1>The data 🥚🥓🦐🥞🥗🥗🥕🥓🥔🥐</h1>
 <p>In this post I’ll be performing MDS on a dataset of the nutritional information for the food emoji and visualizing the result! You can find the dataset on Kaggle <a href="https://www.kaggle.com/ofrancisco/emoji-diet-nutritional-data-sr28">here</a>.</p>
 <p>First, let’s load in some packages.</p>
 <pre class="r"><code>library(tidyverse)
@@ -23,7 +23,7 @@ library(knitr)
 library(stringi)
 library(ggimage)
 library(kableExtra)</code></pre>
-<p>And for all of these fun inline emojis 🥘🥑🥝🥞…</p>
+<p>And for all of these fun inline emojis 🥒🥝🥒🥚…</p>
 <pre class="r"><code># install.packages(&quot;devtools&quot;)
 devtools::install_github(&quot;hadley/emo&quot;)
 library(emo)</code></pre>
@@ -35,41 +35,41 @@ emoji_raw &lt;- read_csv(&quot;data/emoji_nutritional_data.csv&quot;) %&gt;%
 <pre class="r"><code>glimpse(emoji_raw)</code></pre>
 <pre><code>## Observations: 58
 ## Variables: 35
-## $ name                  &lt;chr&gt; &quot;grapes&quot;, &quot;melon&quot;, &quot;watermelon&quot;, &quot;tangerin…
-## $ emoji                 &lt;chr&gt; &quot;\U0001f347&quot;, &quot;\U0001f348&quot;, &quot;\U0001f349&quot;, …
-## $ calories_kcal         &lt;dbl&gt; 0.69, 0.28, 0.30, 0.53, 0.29, 0.89, 0.50, …
-## $ carbohydrates_g       &lt;dbl&gt; 0.1810, 0.0658, 0.0755, 0.1334, 0.0932, 0.…
-## $ total_sugar_g         &lt;dbl&gt; 0.1548, 0.0569, 0.0620, 0.1058, 0.0250, 0.…
-## $ protein_g             &lt;dbl&gt; 0.0072, 0.0111, 0.0061, 0.0081, 0.0110, 0.…
-## $ total_fat_g           &lt;dbl&gt; 0.0016, 0.0010, 0.0015, 0.0031, 0.0030, 0.…
-## $ saturated_fat_g       &lt;dbl&gt; 0.00054, 0.00025, 0.00016, 0.00039, 0.0003…
-## $ monounsaturated_fat_g &lt;dbl&gt; 0.00007, 0.00002, 0.00037, 0.00060, 0.0001…
-## $ polyunsaturated_fat_g &lt;dbl&gt; 0.00048, 0.00039, 0.00050, 0.00065, 0.0008…
-## $ total_fiber_g         &lt;dbl&gt; 0.009, 0.009, 0.004, 0.018, 0.028, 0.026, …
-## $ cholesterol_mg        &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
-## $ vitamin_b6_mg         &lt;dbl&gt; 0.00086, 0.00163, 0.00045, 0.00078, 0.0008…
-## $ vitamin_a_iu          &lt;dbl&gt; 0.66, 0.00, 5.69, 6.81, 0.22, 0.64, 0.58, …
-## $ vitamin_b12_ug        &lt;dbl&gt; 0e+00, 0e+00, 0e+00, 0e+00, 0e+00, 0e+00, …
-## $ vitamin_c_mg          &lt;dbl&gt; 0.032, 0.218, 0.081, 0.267, 0.530, 0.087, …
-## $ vitamin_d_iu          &lt;dbl&gt; 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, …
-## $ vitamin_e_iu          &lt;dbl&gt; 0.0019, 0.0005, 0.0005, 0.0020, 0.0015, 0.…
-## $ vitamin_k_ug          &lt;dbl&gt; 0.146, 0.025, 0.001, 0.000, 0.000, 0.005, …
-## $ thiamin_mg            &lt;dbl&gt; 0.00069, 0.00015, 0.00033, 0.00058, 0.0004…
-## $ riboflavin_mg         &lt;dbl&gt; 0.00070, 0.00031, 0.00021, 0.00036, 0.0002…
-## $ niacin_mg             &lt;dbl&gt; 0.00188, 0.00232, 0.00178, 0.00376, 0.0010…
-## $ folate_ug             &lt;dbl&gt; 0.02, 0.08, 0.03, 0.16, 0.11, 0.20, 0.18, …
-## $ pantothenic_acid_mg   &lt;dbl&gt; 0.00050, 0.00084, 0.00221, 0.00216, 0.0019…
-## $ choline_mg            &lt;dbl&gt; 0.056, 0.076, 0.041, 0.102, 0.051, 0.098, …
-## $ calcium_g             &lt;dbl&gt; 0.10, 0.11, 0.07, 0.37, 0.26, 0.05, 0.13, …
-## $ copper_mg             &lt;dbl&gt; 0.00127, 0.00060, 0.00042, 0.00042, 0.0003…
-## $ iron_mg               &lt;dbl&gt; 0.0036, 0.0034, 0.0024, 0.0015, 0.0060, 0.…
-## $ magnesium_mg          &lt;dbl&gt; 0.07, 0.11, 0.10, 0.12, 0.08, 0.27, 0.12, …
-## $ manganese_mg          &lt;dbl&gt; 0.00071, 0.00035, 0.00038, 0.00039, 0.0003…
-## $ phosphorus_g          &lt;dbl&gt; 0.20, 0.05, 0.11, 0.20, 0.16, 0.22, 0.08, …
-## $ potassium_g           &lt;dbl&gt; 1.91, 1.82, 1.12, 1.66, 1.38, 3.58, 1.09, …
-## $ selenium_ug           &lt;dbl&gt; 0.001, 0.004, 0.004, 0.001, 0.004, 0.010, …
-## $ sodium_g              &lt;dbl&gt; 0.02, 0.09, 0.01, 0.02, 0.02, 0.01, 0.01, …
-## $ zinc_mg               &lt;dbl&gt; 0.0007, 0.0007, 0.0010, 0.0007, 0.0006, 0.…</code></pre>
+## $ name                  &lt;chr&gt; &quot;grapes&quot;, &quot;melon&quot;, &quot;watermelon&quot;, &quot;tangerine&quot;, &quot;…
+## $ emoji                 &lt;chr&gt; &quot;\U0001f347&quot;, &quot;\U0001f348&quot;, &quot;\U0001f349&quot;, &quot;\U00…
+## $ calories_kcal         &lt;dbl&gt; 0.69, 0.28, 0.30, 0.53, 0.29, 0.89, 0.50, 0.63,…
+## $ carbohydrates_g       &lt;dbl&gt; 0.1810, 0.0658, 0.0755, 0.1334, 0.0932, 0.2284,…
+## $ total_sugar_g         &lt;dbl&gt; 0.1548, 0.0569, 0.0620, 0.1058, 0.0250, 0.1223,…
+## $ protein_g             &lt;dbl&gt; 0.0072, 0.0111, 0.0061, 0.0081, 0.0110, 0.0109,…
+## $ total_fat_g           &lt;dbl&gt; 0.0016, 0.0010, 0.0015, 0.0031, 0.0030, 0.0033,…
+## $ saturated_fat_g       &lt;dbl&gt; 0.00054, 0.00025, 0.00016, 0.00039, 0.00039, 0.…
+## $ monounsaturated_fat_g &lt;dbl&gt; 0.00007, 0.00002, 0.00037, 0.00060, 0.00011, 0.…
+## $ polyunsaturated_fat_g &lt;dbl&gt; 0.00048, 0.00039, 0.00050, 0.00065, 0.00089, 0.…
+## $ total_fiber_g         &lt;dbl&gt; 0.009, 0.009, 0.004, 0.018, 0.028, 0.026, 0.014…
+## $ cholesterol_mg        &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,…
+## $ vitamin_b6_mg         &lt;dbl&gt; 0.00086, 0.00163, 0.00045, 0.00078, 0.00080, 0.…
+## $ vitamin_a_iu          &lt;dbl&gt; 0.66, 0.00, 5.69, 6.81, 0.22, 0.64, 0.58, 0.38,…
+## $ vitamin_b12_ug        &lt;dbl&gt; 0e+00, 0e+00, 0e+00, 0e+00, 0e+00, 0e+00, 0e+00…
+## $ vitamin_c_mg          &lt;dbl&gt; 0.032, 0.218, 0.081, 0.267, 0.530, 0.087, 0.478…
+## $ vitamin_d_iu          &lt;dbl&gt; 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00,…
+## $ vitamin_e_iu          &lt;dbl&gt; 0.0019, 0.0005, 0.0005, 0.0020, 0.0015, 0.0010,…
+## $ vitamin_k_ug          &lt;dbl&gt; 0.146, 0.025, 0.001, 0.000, 0.000, 0.005, 0.007…
+## $ thiamin_mg            &lt;dbl&gt; 0.00069, 0.00015, 0.00033, 0.00058, 0.00040, 0.…
+## $ riboflavin_mg         &lt;dbl&gt; 0.00070, 0.00031, 0.00021, 0.00036, 0.00020, 0.…
+## $ niacin_mg             &lt;dbl&gt; 0.00188, 0.00232, 0.00178, 0.00376, 0.00100, 0.…
+## $ folate_ug             &lt;dbl&gt; 0.02, 0.08, 0.03, 0.16, 0.11, 0.20, 0.18, 0.03,…
+## $ pantothenic_acid_mg   &lt;dbl&gt; 0.00050, 0.00084, 0.00221, 0.00216, 0.00190, 0.…
+## $ choline_mg            &lt;dbl&gt; 0.056, 0.076, 0.041, 0.102, 0.051, 0.098, 0.055…
+## $ calcium_g             &lt;dbl&gt; 0.10, 0.11, 0.07, 0.37, 0.26, 0.05, 0.13, 0.07,…
+## $ copper_mg             &lt;dbl&gt; 0.00127, 0.00060, 0.00042, 0.00042, 0.00037, 0.…
+## $ iron_mg               &lt;dbl&gt; 0.0036, 0.0034, 0.0024, 0.0015, 0.0060, 0.0026,…
+## $ magnesium_mg          &lt;dbl&gt; 0.07, 0.11, 0.10, 0.12, 0.08, 0.27, 0.12, 0.05,…
+## $ manganese_mg          &lt;dbl&gt; 0.00071, 0.00035, 0.00038, 0.00039, 0.00030, 0.…
+## $ phosphorus_g          &lt;dbl&gt; 0.20, 0.05, 0.11, 0.20, 0.16, 0.22, 0.08, 0.13,…
+## $ potassium_g           &lt;dbl&gt; 1.91, 1.82, 1.12, 1.66, 1.38, 3.58, 1.09, 1.09,…
+## $ selenium_ug           &lt;dbl&gt; 0.001, 0.004, 0.004, 0.001, 0.004, 0.010, 0.001…
+## $ sodium_g              &lt;dbl&gt; 0.02, 0.09, 0.01, 0.02, 0.02, 0.01, 0.01, 0.01,…
+## $ zinc_mg               &lt;dbl&gt; 0.0007, 0.0007, 0.0010, 0.0007, 0.0006, 0.0015,…</code></pre>
 <p>What are the dimensions?</p>
 <pre class="r"><code>dim(emoji_raw)</code></pre>
 <pre><code>## [1] 58 35</code></pre>
@@ -259,7 +259,7 @@ emoji_mds %&gt;%
 ## [4,] -1.422334 -0.13108625
 ## [5,] -1.407333  0.55831249
 ## [6,] -1.256766  0.09241766</code></pre>
-<p><code>cmdscale()</code> returns a coordinate matrix. The columns represent our axes, <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>, and the rows represent our 🥗🥐🥖🥔🥜🥙 !</p>
+<p><code>cmdscale()</code> returns a coordinate matrix. The columns represent our axes, <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>, and the rows represent our 🥚🥚🥞🥞🥓🥒 !</p>
 </div>
 <div id="visualizing-the-results" class="section level1">
 <h1>Visualizing the results</h1>
@@ -298,7 +298,7 @@ head(emoji_coords2)</code></pre>
   geom_point() +
   geom_label() +
   theme_minimal()</code></pre>
-<p><img src="/post/emoji_mds/index_files/figure-html/uhoh-1.png" width="3000" /></p>
+<p><img src="/post/2019-02-22-emoji-mds/index_files/figure-html/uhoh-1.png" width="3000" /></p>
 <p>Hah…nice try. While the emoji look fine when you use <code>head()</code>, it’s not the same case when you try to plot them (from the poking around I did on stack overflow (see <a href="https://stackoverflow.com/questions/47730589/plot-emojis-emoticons-in-r-with-ggplot">here</a>) this has to do with your operating system/how you save the plot).</p>
 <p>Behind the fancy emoji, this is what is lurking:</p>
 <pre class="r"><code>emoji_coords2 %&gt;% pull(emoji)</code></pre>
@@ -330,5 +330,5 @@ head(emoji_coords2)</code></pre>
        caption = &quot;Dataset: https://www.kaggle.com/ofrancisco/emoji-diet-nutritional-data-sr28&quot;,
        x = &quot;&quot;, y = &quot;&quot;) +
   coord_cartesian(xlim = c(-4, 6), ylim = c(-4,6))</code></pre>
-<p><img src="/post/emoji_mds/index_files/figure-html/finally-1.png" width="3000" /></p>
+<p><img src="/post/2019-02-22-emoji-mds/index_files/figure-html/finally-1.png" width="3000" /></p>
 </div>

@@ -1,8 +1,8 @@
 ---
-title: "Multidimensional Scaling with Food Emoji `r emo::ji('food')``r emo::ji('food')``r emo::ji('food')``r emo::ji('food')``r emo::ji('food')``r emo::ji('food')``r emo::ji('food')``r emo::ji('food')``r emo::ji('food')``r emo::ji('food')``r emo::ji('food')``r emo::ji('food')``r emo::ji('food')``r emo::ji('food')``r emo::ji('food')``r emo::ji('food')`"
-author: "Grace Lawley"
-date: "2019-02-22"
-output: html_document
+title: 'Multidimensional Scaling with Food Emoji `r emo::ji("food")``r emo::ji("food")``r emo::ji("food")`'
+author: [grace]
+date: '2019-02-22'
+output: blogdown::html_page
 ---
 
 ```{r setup, include=FALSE}

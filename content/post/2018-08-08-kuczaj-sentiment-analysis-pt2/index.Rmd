@@ -1,14 +1,10 @@
 ---
-title: "Kuczaj Corpus Sentiment Analysis, Part 2"
-author: "Grace Lawley"
+title: "Kuczaj Corpus Sentiment Analysis, pt 2"
+author: [grace]
+projects: [kuczaj-sentiment-analysis]
 date: "2018-08-08"
-
+output: blogdown::html_page
 summary: "A continuation of a sentiment analysis of child language acquisition data using the Kuczaj Corpus from the CHILDES database."
-tags:
-- R
-
-image:
-  preview_only: true
 ---
 
 ```{r setup, include=FALSE}
@@ -16,8 +12,7 @@ knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE,
                       fig.width = 10, dpi = 300, fig.height = 8)
 ```
 
-
-This past June, I did a [sentiment analysis of the Kuczaj Corpus](../../project/kuczaj_pt1/) from the [CHILDES database](https://childes.talkbank.org) for my final project in a Data Visualization class [<i class="fab fa-github"></i>](https://github.com/apreshill/ohsu-basic-stats) [<i class="fas fa-laptop"></i>](https://ohsu-conj620.netlify.com/index.html) taught by Alison Presmanes Hill, Steven Bedrick, and Jackie Wirz. During my presentation some of the questions that came up were: Does the total number of words per transcript vary a lot? How much is this effecting the sentiment analysis? What would happen to the plot if I normalized for transcript length?
+This past June, I did a [sentiment analysis of the Kuczaj Corpus](../kuczaj_pt1/) from the [CHILDES database](https://childes.talkbank.org) for my final project in a Data Visualization class [<i class="fab fa-github"></i>](https://github.com/apreshill/ohsu-basic-stats) [<i class="fas fa-laptop"></i>](https://ohsu-conj620.netlify.com/index.html) taught by Alison Presmanes Hill, Steven Bedrick, and Jackie Wirz. During my presentation some of the questions that came up were: Does the total number of words per transcript vary a lot? How much is this effecting the sentiment analysis? What would happen to the plot if I normalized for transcript length?
 
 The length of the transcripts *does* vary a great deal, both before and after processing and filtering against the nrc sentiment lexicon. I had actually noticed this artifact in the dataset when working on the project and had plans to address it. I ended up not having enough time to explore different normalization techniques and included a limitations section discussing how this could affect the visualizations I created.
 

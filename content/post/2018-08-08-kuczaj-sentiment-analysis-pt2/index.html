@@ -1,19 +1,15 @@
 ---
-title: "Kuczaj Corpus Sentiment Analysis, Part 2"
-author: "Grace Lawley"
+title: "Kuczaj Corpus Sentiment Analysis, pt 2"
+author: [grace]
+projects: [kuczaj-sentiment-analysis]
 date: "2018-08-08"
-
+output: blogdown::html_page
 summary: "A continuation of a sentiment analysis of child language acquisition data using the Kuczaj Corpus from the CHILDES database."
-tags:
-- R
-
-image:
-  preview_only: true
 ---
 
 
 
-<p>This past June, I did a <a href="../../project/kuczaj_pt1/">sentiment analysis of the Kuczaj Corpus</a> from the <a href="https://childes.talkbank.org">CHILDES database</a> for my final project in a Data Visualization class <a href="https://github.com/apreshill/ohsu-basic-stats"><i class="fab fa-github"></i></a> <a href="https://ohsu-conj620.netlify.com/index.html"><i class="fas fa-laptop"></i></a> taught by Alison Presmanes Hill, Steven Bedrick, and Jackie Wirz. During my presentation some of the questions that came up were: Does the total number of words per transcript vary a lot? How much is this effecting the sentiment analysis? What would happen to the plot if I normalized for transcript length?</p>
+<p>This past June, I did a <a href="../kuczaj_pt1/">sentiment analysis of the Kuczaj Corpus</a> from the <a href="https://childes.talkbank.org">CHILDES database</a> for my final project in a Data Visualization class <a href="https://github.com/apreshill/ohsu-basic-stats"><i class="fab fa-github"></i></a> <a href="https://ohsu-conj620.netlify.com/index.html"><i class="fas fa-laptop"></i></a> taught by Alison Presmanes Hill, Steven Bedrick, and Jackie Wirz. During my presentation some of the questions that came up were: Does the total number of words per transcript vary a lot? How much is this effecting the sentiment analysis? What would happen to the plot if I normalized for transcript length?</p>
 <p>The length of the transcripts <em>does</em> vary a great deal, both before and after processing and filtering against the nrc sentiment lexicon. I had actually noticed this artifact in the dataset when working on the project and had plans to address it. I ended up not having enough time to explore different normalization techniques and included a limitations section discussing how this could affect the visualizations I created.</p>
 <p>Now, two months later, I am revisiting these questions and am going to find out what will happen if I normalize for transcript length!</p>
 <p>Here are the packages that I will be using:</p>
@@ -30,10 +26,10 @@ kuczaj &lt;- read_csv(&quot;data/kuczaj_nrc.csv&quot;)     </code></pre>
 <pre class="r"><code>glimpse(kuczaj)</code></pre>
 <pre><code>## Observations: 22,893
 ## Variables: 4
-## $ age_months &lt;dbl&gt; 29.00060, 29.00060, 29.00060, 29.00060, 29.00060, 29.…
-## $ age_years  &lt;dbl&gt; 2.416716, 2.416716, 2.416716, 2.416716, 2.416716, 2.4…
-## $ word       &lt;chr&gt; &quot;hurt&quot;, &quot;hurt&quot;, &quot;hurt&quot;, &quot;hurt&quot;, &quot;break&quot;, &quot;cry&quot;, &quot;cry&quot;…
-## $ sentiment  &lt;chr&gt; &quot;anger&quot;, &quot;fear&quot;, &quot;negative&quot;, &quot;sadness&quot;, &quot;surprise&quot;, &quot;…</code></pre>
+## $ age_months &lt;dbl&gt; 29.00060, 29.00060, 29.00060, 29.00060, 29.00060, 29.00060…
+## $ age_years  &lt;dbl&gt; 2.416716, 2.416716, 2.416716, 2.416716, 2.416716, 2.416716…
+## $ word       &lt;chr&gt; &quot;hurt&quot;, &quot;hurt&quot;, &quot;hurt&quot;, &quot;hurt&quot;, &quot;break&quot;, &quot;cry&quot;, &quot;cry&quot;, &quot;ba…
+## $ sentiment  &lt;chr&gt; &quot;anger&quot;, &quot;fear&quot;, &quot;negative&quot;, &quot;sadness&quot;, &quot;surprise&quot;, &quot;negat…</code></pre>
 <p>Since I only worked with the “trust”, “joy”, “anticipation”, “sadness”, “fear”, and “anger” sentiments last time, I am going to filter out all other sentiments from the dataframe. I’m also going to coerce <code>sentiment</code> to a factor and will order its levels with the positively associated ones before the negatively associated ones to make plotting easier later on.</p>
 <pre class="r"><code># Sentiments to keep
 sentiment_levels &lt;- c(&quot;trust&quot;, &quot;joy&quot;, &quot;anticipation&quot;, 
@@ -84,7 +80,7 @@ ages_binned2 &lt;- ages_binned2 %&gt;%
   geom_point() + 
   labs(title = &quot;Total number of tokens per age bin&quot;) +
   theme_minimal()</code></pre>
-<p><img src="/project/kuczaj_pt2/index_files/figure-html/bins-1.png" width="3000" />
+<p><img src="/post/2018-08-08-kuczaj-sentiment-analysis-pt2/index_files/figure-html/bins-1.png" width="3000" />
 I decided to move forward for this iteration of the project without addressing this further but would ideally like to explore some weighting options in the future. So please just keep these limitations in mind when viewing the visualizations that follow.</p>
 <p>To get orientated with the data I started by making this quick and minimal scatterplot.</p>
 <pre class="r"><code>ggplot(ages_binned2, aes(age_months, percent, color = sentiment)) +
@@ -92,14 +88,14 @@ I decided to move forward for this iteration of the project without addressing t
   facet_wrap(~ sentiment) +
   guides(color = FALSE) +
   theme_minimal()</code></pre>
-<p><img src="/project/kuczaj_pt2/index_files/figure-html/plot1-1.png" width="3000" /></p>
+<p><img src="/post/2018-08-08-kuczaj-sentiment-analysis-pt2/index_files/figure-html/plot1-1.png" width="3000" /></p>
 <p>…and then on second thought, I decided to switch over to a bar chart.</p>
 <pre class="r"><code>ggplot(ages_binned2, aes(age_months, percent, fill = sentiment)) +
   geom_col(alpha = 0.7) +
   facet_grid(sentiment ~ .)+
   guides(fill = FALSE) +
   theme_minimal()</code></pre>
-<p><img src="/project/kuczaj_pt2/index_files/figure-html/plot2-1.png" width="3000" /></p>
+<p><img src="/post/2018-08-08-kuczaj-sentiment-analysis-pt2/index_files/figure-html/plot2-1.png" width="3000" /></p>
 <p>This looks better, but having all six plots in one column makes the plots look a little cramped. What if I used a <code>facet_wrap</code> on sentiment?</p>
 <pre class="r"><code>ggplot(ages_binned2, aes(age_months, percent, fill = sentiment)) +
   geom_col(alpha = 0.7) +
@@ -107,7 +103,7 @@ I decided to move forward for this iteration of the project without addressing t
   theme_minimal() +
   labs(x = &quot;&quot;, y = &quot;&quot;) +
   guides(fill = FALSE)</code></pre>
-<p><img src="/project/kuczaj_pt2/index_files/figure-html/plot3-1.png" width="3000" /></p>
+<p><img src="/post/2018-08-08-kuczaj-sentiment-analysis-pt2/index_files/figure-html/plot3-1.png" width="3000" /></p>
 <p>…what if I switch the orientation and add in some colors?</p>
 <pre class="r"><code>positive_plot &lt;- ages_binned2 %&gt;% 
   filter(sentiment %in% c(&quot;trust&quot;, &quot;joy&quot;, &quot;anticipation&quot;)) %&gt;% 
@@ -130,7 +126,7 @@ negative_plot &lt;- ages_binned2 %&gt;%
     scale_fill_manual(values = c(&quot;#21132B&quot;, &quot;#4F406E&quot;, &quot;#6C7399&quot;))
 
 ggarrange(positive_plot, negative_plot, ncol = 2, nrow = 1)</code></pre>
-<p><img src="/project/kuczaj_pt2/index_files/figure-html/plot4-1.png" width="3000" /></p>
+<p><img src="/post/2018-08-08-kuczaj-sentiment-analysis-pt2/index_files/figure-html/plot4-1.png" width="3000" /></p>
 <p>Okay, I like this one a lot more. Now let’s customize the axis tick breaks and labels.</p>
 <pre class="r"><code>positive_plot2 &lt;- positive_plot +
   scale_y_continuous(breaks = c(0.05, 0.15, 0.25),
@@ -148,7 +144,7 @@ negative_plot2 &lt;- negative_plot +
 
 
 ggarrange(positive_plot2, negative_plot2, ncol = 2, nrow = 1)</code></pre>
-<p><img src="/project/kuczaj_pt2/index_files/figure-html/plot4a-1.png" width="3000" /></p>
+<p><img src="/post/2018-08-08-kuczaj-sentiment-analysis-pt2/index_files/figure-html/plot4a-1.png" width="3000" /></p>
 <p>…and finally let’s change the font face and add in tick marks!</p>
 <pre class="r"><code>positive_plot3 &lt;- positive_plot2 +
   theme(plot.title = element_text(size = 18, face = &quot;bold&quot;),
@@ -164,4 +160,4 @@ negative_plot3 &lt;- negative_plot2 +
         axis.ticks.x = element_line())
 
 ggarrange(positive_plot3, negative_plot3, ncol = 2, nrow = 1)</code></pre>
-<p><img src="/project/kuczaj_pt2/index_files/figure-html/plot4b-1.png" width="3000" /></p>
+<p><img src="/post/2018-08-08-kuczaj-sentiment-analysis-pt2/index_files/figure-html/plot4b-1.png" width="3000" /></p>

@@ -1,19 +1,21 @@
 ---
-title: "Kuczaj Corpus Sentiment Analysis, part 1 "
+title: "Kuczaj Corpus Sentiment Analysis, pt 1"
+author: [grace]
+projects: [kuczaj-sentiment-analysis]
 date: "2018-06-17"
-output: html_document
-summary: A sentiment analysis of child language acquisition data using the Kuczaj Corpus from the CHILDES database that I did for my final visualization project for CS 632.
-tags:
-- R
+output: blogdown::html_page
+summary: "A sentiment analysis of child language acquisition data using the Kuczaj Corpus from the CHILDES database that I did for my final visualization project for CS 632."
 image:
   preview_only: true
+bibliography: [papers.bib]
+link-citations: true
 ---
 
 
 
 <div id="ridgeline-plot" class="section level1">
 <h1>Ridgeline Plot</h1>
-<p><img src="/project/kuczaj_pt1/index_files/figure-html/intial%20plot-1.png" width="960" /></p>
+<p><img src="/post/2018-06-17-kuczaj-sentiment-analysis-pt1/index_files/figure-html/intial%20plot-1.png" width="960" /></p>
 </div>
 <div id="description-of-the-data" class="section level1">
 <h1>Description of the Data</h1>
@@ -99,7 +101,7 @@ kuczaj %&lt;&gt;%
 <pre class="r"><code># Tokenizing into unigrams
 tokens_raw &lt;- kuczaj %&gt;% 
   unnest_tokens(output = word, input = utt)</code></pre>
-<p>Since text data can be difficult to visualize raw, especially if you have a lot of it, I chose to visualize the emotion in the text. I performed a sentiment analysis with the <code>&quot;nrc&quot;</code> sentiment lexicon included in the <code>tidytext</code> package. The <a href="http://saifmohammad.com/WebPages/NRC-Emotion-Lexicon.htm">NRC Word-Emotion Association Lexicon</a> classifies words into 10 different sentiment categories: <code>anger</code>, <code>anticipation</code>, <code>disgust</code>, <code>fear</code>, <code>joy</code>, <code>negative</code>, <code>positive</code>, <code>sadness</code>, <code>surprise</code>, and <code>trust</code>.</p>
+<p>Since text data can be difficult to visualize raw, especially if you have a lot of it, I chose to visualize the emotion in the text. I performed a sentiment analysis with the <code>"nrc"</code> sentiment lexicon included in the <code>tidytext</code> package. The <a href="http://saifmohammad.com/WebPages/NRC-Emotion-Lexicon.htm">NRC Word-Emotion Association Lexicon</a> <span class="citation">(<a href="#ref-mohammad13" role="doc-biblioref">2013</a>)</span> classifies words into 10 different sentiment categories: <code>anger</code>, <code>anticipation</code>, <code>disgust</code>, <code>fear</code>, <code>joy</code>, <code>negative</code>, <code>positive</code>, <code>sadness</code>, <code>surprise</code>, and <code>trust</code>.</p>
 <p>After initializing the lexicon, I combined it with the tokens using an <code>dplyr::inner_join</code>. Only the tokens that occured in both dataframes were kept, while all other tokens were removed.</p>
 <pre class="r"><code># Initizalizing &quot;nrc&quot; sentiment lexicon
 nrc &lt;- tidytext::get_sentiments(&quot;nrc&quot;)
@@ -144,7 +146,7 @@ negative_plot &lt;- nrc_df %&gt;%
 
 # Combining into one and plotting
 egg::ggarrange(positive_plot, negative_plot, ncol = 1, nrow = 2)</code></pre>
-<p><img src="/project/kuczaj_pt1/index_files/figure-html/plotting-1.png" width="960" /></p>
+<p><img src="/post/2018-06-17-kuczaj-sentiment-analysis-pt1/index_files/figure-html/plotting-1.png" width="960" /></p>
 </div>
 <div id="description-of-the-audience" class="section level1">
 <h1>Description of the Audience</h1>
@@ -177,8 +179,9 @@ As for as potential audiences in a more general sense, this might include studen
 <div id="an-early-draft" class="section level1">
 <h1>An Early Draft</h1>
 <p>This is an early draft plot that came before the sentiments were grouped into “positive” and “negative” and before I altered the general plot composition and colors. I had already chosen to reduce the total number of sentiments, but had only reduced it down to 8 for this plot. I decided to separate the sentiments into <em>positive</em> and <em>negative</em> groups and realizing that having them all on the same plot made it difficult to understand what was the plot was showing at a first glance.</p>
-<pre class="r"><code># Loading package for colors
-library(beyonce)
+<pre class="r"><code># Using the beyonce package for colors
+# devtools::install_github(&quot;dill/beyonce&quot;)
+library(beyonce) 
 
 # Making the plot
 nrc_df %&gt;% 
@@ -190,5 +193,10 @@ nrc_df %&gt;%
     scale_x_continuous(expand = c(0.01, 0)) +
     theme_ridges(grid = FALSE) +
     scale_fill_manual(values = beyonce_palette(64))</code></pre>
-<p><img src="/project/kuczaj_pt1/index_files/figure-html/early%20draft-1.png" width="960" /></p>
+<p><img src="/post/2018-06-17-kuczaj-sentiment-analysis-pt1/index_files/figure-html/early%20draft-1.png" width="960" /></p>
+<div id="refs" class="references">
+<div id="ref-mohammad13">
+<p>Mohammad, Saif M., and Peter D. Turney. 2013. “Crowdsourcing a Word-Emotion Association Lexicon.” <em>Computational Intelligence</em> 29 (3): 436–65. <a href="https://doi.org/10.1111/j.1467-8640.2012.00460.x">https://doi.org/10.1111/j.1467-8640.2012.00460.x</a>.</p>
+</div>
+</div>
 </div>

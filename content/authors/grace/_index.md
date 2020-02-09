@@ -19,9 +19,9 @@ interests:
 - R, Python
 name: Grace Lawley
 organizations:
-- name: Center for Spoken Language Understanding (CSLU)
+- name: Center for Spoken Language Understanding
   url: "https://www.ohsu.edu/xd/research/centers-institutes/center-for-spoken-language-understanding/"
-- name: Oregon Health & Science University (OHSU)
+- name: Oregon Health & Science University
   url: "https://www.ohsu.edu/xd/"
 role: Computer Science & Engineering PhD Student
 social:

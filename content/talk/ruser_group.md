@@ -4,26 +4,29 @@ event: OHSU Data Viz Lab Talks Night - Portland R User Group
 event_url: https://www.meetup.com/portland-r-user-group/events/253069227/
 location: Oregon Health & Science University, Portland, Oregon
 projects:
-- kuczaj_pt2
+- kuczaj-sentiment-analysis
 
-url_custom:
-- name: Github Repo
+links:
+- icon: images
+  icon_pack: fas
+  name: slides
+  url: https://glawley.netlify.com/ruser-group
+- icon: github
+  icon_pack: fab
+  name: code
   url: https://github.com/gracelawley/kuczaj-corpus
-- name: Slides
-  url: slides/ruser-group/
-- name: Raw Slides
-  url: https://raw.githubusercontent.com/gracelawley/gracelawley/master/static/slides/ruser-group/index.Rmd
+
 
 tags: []
-time_end: 2018-08-14T20:00:00
-time_start: 2018-08-14T18:00:00
+date: 2018-08-14T18:00:00
+date_end: 2018-08-14T20:00:00
+
 
 abstract: ""
 abstract_short: ""
 
 all_day: false
 authors: []
-date: "2017-01-01T00:00:00-08:00" # schedule publish date
 draft: false
 featured: false
 math: true

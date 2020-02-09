@@ -1,0 +1,185 @@
+---
+title: 'Multidimensional Scaling with Food Emoji `r emo::ji("food")``r emo::ji("food")``r emo::ji("food")`'
+author: [grace]
+date: '2019-02-22'
+output: blogdown::html_page
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, fig.width = 10, dpi = 300, fig.height = 8)
+library(emo)
+```
+
+# What is Multidimensional Scaling?
+
+Multidimensional Scaling (MDS) is a dimensionality reduction technique that is useful for exploratory data visualization. Some other popular dimensionality reduction techniques include Principle Component Analysis (PCA) and t-Distributed Stochastic Neighbor Embedding (t-SNE). 
+
+Given a similarity matrix (e.g. a distance matrix), MDS projects the data points into an N-dimensional space while minimizing the amount of similarity information lost. In the ideal case, the closer the projected points are to one another, the more similar the are while the farther apart they are, the less similar they are. MDS can reveal similarity patterns in your data that were not previously obvious.
+
+# The data `r emo::ji('food')``r emo::ji('food')``r emo::ji('food')``r emo::ji('food')``r emo::ji('food')``r emo::ji('food')``r emo::ji('food')``r emo::ji('food')``r emo::ji('food')``r emo::ji('food')`
+
+In this post I'll be performing MDS on a dataset of the nutritional information for the food emoji and visualizing the result! You can find the dataset on Kaggle [here](https://www.kaggle.com/ofrancisco/emoji-diet-nutritional-data-sr28).
+
+First, let's load in some packages.
+```{r load_packages, message = FALSE, warning = FALSE}
+library(tidyverse)
+library(janitor)
+library(knitr)
+library(stringi)
+library(ggimage)
+library(kableExtra)
+```
+
+And for all of these fun inline emojis `r emo::ji('food')``r emo::ji('food')``r emo::ji('food')``r emo::ji('food')`...
+```{r inline_emojis, eval = FALSE}
+# install.packages("devtools")
+devtools::install_github("hadley/emo")
+library(emo)
+```
+
+Next, let's load in the dataset.
+```{r load_data, message = FALSE, warning = FALSE}
+# read in the data
+emoji_raw <- read_csv("data/emoji_nutritional_data.csv") %>%
+  janitor::clean_names()  # clean up column names
+```
+
+A quick glimpse of the raw data
+```{r glimpse}
+glimpse(emoji_raw)
+```
+
+What are the dimensions?
+```{r dims}
+dim(emoji_raw)
+```
+
+Since there are a quite a few nutritional categories in this dataset, I decided to narrow things down a bit based on the U.S. Food & Drug Administration's recommendations [here](https://www.fda.gov/food/labelingnutrition/ucm274593.htm). 
+
+
+They recommend limiting **total fat**, **cholesterol**, and **sodium**, and getting more of **dietary fiber** , **vitamin A**, **vitamin C**, **calcium**, and **iron**. I decided to add **total sugar** and **protein** into the mix as well.
+
+
+Let's extract the name and emoji information from the original dataset since we'll need that later on for plotting.
+```{r get_info}
+emoji_info <- emoji_raw %>% 
+  select(name, emoji)
+```
+
+Let's also create a new version of the dataframe with only the nutrients that we are focusing on.
+```{r prep_data}
+emoji_data <- emoji_raw %>% 
+  select(calcium_g, total_fiber_g, vitamin_a_iu, vitamin_c_mg, 
+         saturated_fat_g, cholesterol_mg, sodium_g, iron_mg,
+         total_sugar_g, protein_g)
+
+```
+
+# MDS
+
+Before we can perform MDS, we need to normalize our data so that our sample means are centered at zero and our sample variances are equal to one. This will take care of any issues of some nutrients being in different units than others. We can normalize our dataset using the `scale()` function.
+```{r normalize_data}
+emoji_scaled <- scale(emoji_data) %>% 
+  as_tibble()
+```
+
+Quick sanity check to make sure everything went as expected:
+```{r sanity_check}
+emoji_scaled %>% 
+  summarize_all(var) %>% 
+  kable() %>% 
+  kable_styling() %>%
+  scroll_box(width = "100%")
+
+emoji_scaled %>% 
+  summarize_all(mean) %>% 
+  kable() %>% 
+  kable_styling() %>%
+  scroll_box(width = "100%")
+```
+
+Okay, looks good! The next step is to create a distance matrix using `dist()`. The default distance measure of `dist()` is euclidean distance. This may not be the best choice for this situation but will be sufficient for the purposes of this post.
+```{r calc_dist}
+emoji_dist <- emoji_scaled %>% 
+  dist()
+```
+
+Now we're reading to perform MDS using `cmdscale()` from the preloaded `stats` package. By setting the argument `k = 2`, we're telling `cmdscale` that we want to project our data into a 2D space. 
+```{r calc_mds}
+emoji_mds <- cmdscale(d = emoji_dist, k = 2)
+
+emoji_mds %>% 
+  head()
+```
+
+`cmdscale()` returns a coordinate matrix. The columns represent our axes, $x$ and $y$, and the rows represent our `r emo::ji('food')``r emo::ji('food')``r emo::ji('food')``r emo::ji('food')``r emo::ji('food')``r emo::ji('food')` !
+
+
+# Visualizing the results
+
+
+
+Since I want to use `ggplot2` to plot these coordinates, let's convert our matrix into a tibble.
+```{r make_df}
+emoji_coords <- emoji_mds %>% 
+  as_tibble() %>% 
+  rename("mds_x" = "V1", "mds_y" = "V2") 
+
+head(emoji_coords)
+```
+
+
+Now let's get everything prepped for our plot! First, let's grab that `emoji_info` data frame that we made at the very beginning that has the emoji and their names and join it to our `emoji_coords` dataframe. Since I am positive that the row order hasn't changed, I'm going to use `bind_cols()` to combine the two.
+```{r join_dfs}
+emoji_coords2 <- bind_cols(emoji_info, emoji_coords)
+
+head(emoji_coords2)
+```
+
+Oooh wouldn't it be neat if we could have the actual emoji on our plot? I bet you can just use `geom_label()` and everything will be fine, right...? 
+```{r uhoh}
+ggplot(emoji_coords2, aes(mds_x, mds_y, 
+                          label = emoji)) +
+  geom_point() +
+  geom_label() +
+  theme_minimal()
+```
+
+Hah...nice try. While the emoji look fine when you use `head()`, it's not the same case when you try to plot them (from the poking around I did on stack overflow (see [here](https://stackoverflow.com/questions/47730589/plot-emojis-emoticons-in-r-with-ggplot)) this has to do with your operating system/how you save the plot).
+
+Behind the fancy emoji, this is what is lurking:
+```{r unicode}
+emoji_coords2 %>% pull(emoji)
+```
+
+Figuring out how to get emoji into a `ggplot` was **quite** the battle. I ended up spending a lot more time than I would like to admit getting the plot to look exactly how I wanted it to given the format of the original dataset. Although I didn't end up using it because of of some compatability issues with this dataset, the [`emoGG`](https://github.com/dill/emoGG) package on github was super helpful when I was figuring out how to get this plot to work!
+
+From looking at the `emoGG` package I learned that I could use [Twemoji](https://twemoji.maxcdn.com) to grab the images that I wanted. I just needed to extract the last part of the unicode of each emoji to use to get the correct url. To do this, I used `stri_escape_unicode()` from the `stringi` package with `str_replace()` from the `stringr` package. Once I had this, I could create the appropriate urls for each emoji and pass that onto `geom_image()` from the `ggimage` package. In the end, this felt surprisingly simple but it took me quite a while to get to this solution.
+
+```{r add_urls}
+emoji_coords2 <- emoji_coords2 %>% 
+  # extract the code point
+  mutate(code_point = str_replace(stringi::stri_escape_unicode(emoji), "\\\\U000", "")) %>% 
+  # create image urls
+  mutate(img_url = map_chr(code_point, ~ str_glue("https://twemoji.maxcdn.com/2/72x72/", ., ".png")))
+```
+
+Finally....the plot!
+```{r finally}
+ggplot(emoji_coords2, aes(mds_x, mds_y)) +
+  geom_image(aes(image = img_url)) +
+  theme_minimal() +
+  labs(title = "Nutritional Similarity Patterns",
+       subtitle = "Multidimensional Scaling of the Food Emoji",
+       caption = "Dataset: https://www.kaggle.com/ofrancisco/emoji-diet-nutritional-data-sr28",
+       x = "", y = "") +
+  coord_cartesian(xlim = c(-4, 6), ylim = c(-4,6))
+```
+
+
+
+
+
+
+
+

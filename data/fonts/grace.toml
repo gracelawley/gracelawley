@@ -2,14 +2,14 @@
 name = "grace"
 
 # Optional Google font URL
-google_fonts = "Catamaran:300|Fira+Mono|Merriweather:400"
+google_fonts = "Catamaran:300|Merriweather:400|Roboto+Mono"
 
 # Font families
 heading_font = "Merriweather"
 body_font = "Catamaran"
 nav_font = "Catamaran"
-mono_font = "Fira Mono"
+mono_font = "Roboto Mono"
 
 # Font size
-font_size = "18"
-font_size_small = "16"
+#font_size = "18"
+#font_size_small = "16"

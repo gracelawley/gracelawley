@@ -19,8 +19,6 @@ interests:
 - R, Python
 name: Grace Lawley
 organizations:
-- name: Center for Spoken Language Understanding
-  url: "https://www.ohsu.edu/xd/research/centers-institutes/center-for-spoken-language-understanding/"
 - name: Oregon Health & Science University
   url: "https://www.ohsu.edu/xd/"
 role: Computer Science & Engineering PhD Student
@@ -43,7 +41,7 @@ social:
 superuser: true
 ---
 
-Hi! My name is Grace Lawley. I am a third-year PhD student in the Computer Science & Engineering program at the [Center for Spoken Language Understanding (CSLU)](https://www.ohsu.edu/xd/research/centers-institutes/center-for-spoken-language-understanding/) at [Oregon Health & Science University (OHSU)](https://www.ohsu.edu/xd/) in Portland, Oregon.
+Hi! My name is Grace Lawley. I am a PhD student in the Computer Science & Engineering program at [Oregon Health & Science University (OHSU)](https://www.ohsu.edu/xd/) in Portland, Oregon.
 
 My interests include computational linguistics, speech & language disorders, houseplants, and Rachmaninoff. My research involves developing computational methods to detect and quantify atypical word use in the language of children with Autism Spectrum Disorder. 
 

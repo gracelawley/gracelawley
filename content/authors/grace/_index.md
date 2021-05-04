@@ -41,7 +41,7 @@ social:
 superuser: true
 ---
 
-Hi! My name is Grace Lawley. I am a PhD student in the Computer Science & Engineering program at [Oregon Health & Science University (OHSU)](https://www.ohsu.edu/xd/) in Portland, Oregon.
+Hi! I am a PhD student in the Computer Science & Engineering program at [Oregon Health & Science University (OHSU)](https://www.ohsu.edu/xd/) in Portland, Oregon, USA.
 
 My interests include computational linguistics, speech & language disorders, houseplants, and Rachmaninoff. My research involves developing computational methods to detect and quantify atypical word use in the language of children with Autism Spectrum Disorder. 
 

@@ -9,7 +9,7 @@ links:
 - icon: images
   icon_pack: fas
   name: slides
-  url: https://glawley.netlify.com/math-meets-data
+  url: https://glawley.netlify.com/2019_math-meets-data
 
 tags: []
 date: 2019-04-04T15:30:00

@@ -10,7 +10,7 @@ links:
 - icon: images
   icon_pack: fas
   name: slides
-  url: https://glawley.netlify.com/ruser-group
+  url: https://glawley.netlify.com/2018_ruser-group
 - icon: github
   icon_pack: fab
   name: code

@@ -1,27 +1,27 @@
 ---
-title: 
-event: Research Week OHSU 2020
+title: Towards an automated method for quantifying pedantic language in children with Autism Spectrum Disorder 
+event: Informatics, Communication and Language Session, Research Week 2020 - Virtual
 location: Oregon Health and Science University, Portland, Oregon
   
 tags: []
 
-date: 2021-05-03T14:00:00
-date_end: 2021-05-03T15:00:00
+date: 2020-06-12T13:00:00
+date_end: 2020-06-12T14:30:00
 
 links:
 - icon: images
   icon_pack: fas
   name: slides
-  url: https://glawley.netlify.com/
+  url: https://glawley.netlify.com/2020_research-week/index.pdf
 - icon: desktop
   icon_pack: fas
   name: website
   url: https://www.ohsu.edu/research-week
 
 
-abstract: "...."
+abstract: ""
 
-abstract_short: "..."
+abstract_short: ""
 
 all_day: false
 authors: []

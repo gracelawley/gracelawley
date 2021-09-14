@@ -16,7 +16,7 @@ links:
 - icon: desktop
   icon_pack: fas
   name: website
-  url: https://www.ohsu.edu/research-week
+  url: https://doi.org/10.6083/44558d72q
 
 
 abstract: ""

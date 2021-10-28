@@ -4,9 +4,9 @@ authors:
 bio:
 education:
   courses:
-  - course: Phd in Computer Science & Engineering
+  - course: PhD in Computer Science & Engineering
     institution: Oregon Health & Science University
-    year: Expected June 2022
+    year: 2017-present
   - course: BA in Mathematics
     institution: Lewis & Clark College
     year: 2017
@@ -21,7 +21,7 @@ name: Grace Lawley
 organizations:
 - name: Oregon Health & Science University
   url: "https://www.ohsu.edu/xd/"
-role: Computer Science & Engineering PhD Student
+role: Computer Science & Engineering PhD candidate
 social:
 - icon: paper-plane
   icon_pack: fas
@@ -41,8 +41,9 @@ social:
 superuser: true
 ---
 
-Hi! I am a PhD student in the Computer Science & Engineering program at [Oregon Health & Science University (OHSU)](https://www.ohsu.edu/xd/) in Portland, Oregon, USA.
+Hi! I am a PhD candidate in the Computer Science & Engineering program at [Oregon Health & Science University (OHSU)](https://www.ohsu.edu/xd/) in Portland, Oregon, USA. My advisor is [Dr. Steven Bedrick](https://www.bedrick.org/).
 
-My interests include computational linguistics, speech & language disorders, houseplants, and Rachmaninoff. My research involves developing computational methods to detect and quantify atypical word use in the language of children with Autism Spectrum Disorder. 
+My interests include computational linguistics, speech & language disorders, statistics, and houseplants. My
+research involves developing computational methods to detect and quantify different aspects of the language of children with Autism Spectrum Disorder (ASD). 
 
 

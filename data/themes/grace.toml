@@ -5,22 +5,34 @@ name = "grace"
 light = true
 
 # Primary
-primary = "#CC9999"
+primary = "#5572e8" # contrast color
 
 # Menu
-menu_primary = "#fdfdfd"
-menu_text = "#373737"
-menu_text_active = "#CC9999"
-menu_title = "#373737"
+menu_primary = "#fdfdfd" # white
+menu_text = "#373737" # black
+menu_text_active = "#5572e8" # contrast color
+menu_title = "#5572e8"
 
 # Backgrounds
-background = "#f4f4f4"
-home_section_odd = "#f4f4f4"
-home_section_even = "#fdfdfd"
+background = "#fdfdfc"
+home_section_odd = "#fdfdfc"
+home_section_even = "#fdfdfc"
 
 
 
+# Primary
+#primary = "#CC9999" # dark pink
 
+# Menu
+#menu_primary = "#fdfdfd" # white
+#menu_text = "#373737" # black
+#menu_text_active = "#CC9999" # dark pink
+#menu_title = "#373737"
+
+# Backgrounds
+#background = "#f4f4f4"
+#home_section_odd = "#f4f4f4"
+#home_section_even = "#fdfdfd"
 
 
 

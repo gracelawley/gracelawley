@@ -17,7 +17,7 @@ publication_types: ["1"]
 
 # Publication name and optional abbreviated publication name.
 publication: In *International Society for Autism Research Annual Meeting, 2020*
-publication_short: In *INSAR 2020*
+publication_short:
 
 abstract: ""
 

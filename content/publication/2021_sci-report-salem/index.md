@@ -24,7 +24,10 @@ publication_types: ["2"]
 publication: "*Scientific Reports*"
 publication_short: 
 
-abstract: 
+abstract: "Measurement of language atypicalities in Autism Spectrum Disorder (ASD) is cumbersome and costly. Better language outcome measures are needed. Using language transcripts, we generated Automated Language Measures (ALMs) and tested their validity. 169 participants (96 ASD, 28 TD, 45 ADHD) ages 7 to 17 were evaluated with the Autism Diagnostic Observation Schedule. Transcripts of one task were analyzed to generate seven ALMs: mean length of utterance in morphemes, number of different word roots (NDWR), um proportion, content maze proportion, unintelligible proportion, c-units per minute, and repetition proportion. With the exception of repetition proportion (p = .07
+), nonparametric ANOVAs showed significant group differences (p < 0.01
+). The TD and ADHD groups did not differ from each other in post-hoc analyses. With the exception of NDWR, the ASD group showed significantly (p<0.01
+) lower scores than both comparison groups. The ALMs were correlated with standardized clinical and language evaluations of ASD. In age- and IQ-adjusted logistic regression analyses, four ALMs significantly predicted ASD status with satisfactory accuracy (67.9–75.5%). When ALMs were combined together, accuracy improved to 82.4%. These ALMs offer a promising approach for generating novel outcome measures."
 
 # Summary. An optional shortened abstract.
 summary: 

@@ -23,7 +23,7 @@ publication_types: ["2"]
 publication: "*Journal of Autism and Developmental Disorders*"
 publication_short: ""
 
-abstract: 
+abstract: 'Pragmatic language difficulties, including unusual filler usage, are common among children with Autism Spectrum Disorder (ASD). This study investigated “um” and “uh” usage in children with ASD and typically developing (TD) controls. We analyzed transcribed Autism Diagnostic Observation Schedule (ADOS) sessions for 182 children (117 ASD, 65 TD), aged 4 to 15. Although the groups did not differ in “uh” usage, the ASD group used fewer “ums” than the TD group. This held true after controlling for age, sex, and IQ. Within ASD, social affect and pragmatic language scores did not predict filler usage; however, structural language scores predicted “um” usage. Lower “um” rates among children with ASD may reflect problems with planning or production rather than pragmatic language.'
 
 # Summary. An optional shortened abstract.
 summary: 

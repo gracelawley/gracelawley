@@ -6,7 +6,7 @@ education:
   courses:
   - course: PhD in Computer Science & Engineering
     institution: Oregon Health & Science University
-    year: 2017-present
+    year: Expected September 2023
   - course: BA in Mathematics
     institution: Lewis & Clark College
     year: 2017

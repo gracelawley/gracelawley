@@ -25,10 +25,10 @@ role: Computer Science & Engineering PhD candidate
 social:
 - icon: paper-plane
   icon_pack: fas
-  link: '#contact'
-- icon: twitter
-  icon_pack: fab
-  link: https://twitter.com/graceolawley
+  link: mailto:gracelawley@gmail.com
+#- icon: twitter
+#  icon_pack: fab
+#  link: https://twitter.com/graceolawley
 - icon: linkedin
   icon_pack: fab
   link: https://linkedin.com/in/gracelawley
@@ -41,9 +41,10 @@ social:
 superuser: true
 ---
 
-Hi! I am a PhD candidate in the Computer Science & Engineering program at [Oregon Health & Science University (OHSU)](https://www.ohsu.edu/xd/) in Portland, Oregon, USA. My advisor is [Dr. Steven Bedrick](https://www.bedrick.org/).
+I am a PhD candidate in the Computer Science & Engineering program at [Oregon Health & Science University (OHSU)](https://www.ohsu.edu/xd/) in Portland, Oregon, USA. My advisor is [Dr. Steven Bedrick](https://www.bedrick.org/). My research involves developing computational methods to detect and quantify different aspects of the language of children with Autism Spectrum Disorder (ASD). 
 
-My interests include computational linguistics, speech & language disorders, statistics, and houseplants. My
-research involves developing computational methods to detect and quantify different aspects of the language of children with Autism Spectrum Disorder (ASD). 
+I am also a Data Science Mentor at [Posit Academy](https://posit.co/products/enterprise/academy/) (Posit was previously known as RStudio). I mentor small groups of working professionals as they develop and hone their data science skills using either R or Python. I also assist the Academy content development team in translating and adapting prior course material from R into Python.
+
+<!---My interests include computational linguistics, speech & language disorders, statistics, and houseplants.-->
 
 

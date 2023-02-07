@@ -81,7 +81,8 @@ edit_page = {repo_url = "https://github.com/gracelawley/gracelawley", content_di
 ############################
 
 # Enter contact details (optional). To hide a field, clear it to "".
-email = "lawley@ohsu.edu"
+# Note: set email_form = 2 in contact.md to turn on widget
+email = ""
 phone = ""
 
 # Address
@@ -105,7 +106,7 @@ appointment_url = ""
 # Contact links
 #   Set to `[]` to disable, or comment out unwanted lines with a hash `#`.
 contact_links = [
-  {icon = "twitter", icon_pack = "fab", name = "DM Me", link = "https://twitter.com/graceolawley"}
+  #{icon = "twitter", icon_pack = "fab", name = "DM Me", link = "https://twitter.com/graceolawley"}
   #{icon = "skype", icon_pack = "fab", name = "Skype Me", link = "skype:echo123?call"},
   #{icon = "keybase", icon_pack = "fab", name = "Chat on Keybase", link = "https://keybase.io/"},
   #{icon = "comments", icon_pack = "fas", name = "Discuss on Forum", link = "https://discourse.gohugo.io"},
@@ -229,7 +230,7 @@ plugins_js  = []
   #   2: Algolia (https://www.algolia.com)
   engine = 1
 
-  # Configuration of Algolia search engine.
+  # Configuration of Algolia search engine.z
   # Paste the values from your Algolia dashboard.
   [search.algolia]
     app_id = ""

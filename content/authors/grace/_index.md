@@ -13,15 +13,15 @@ education:
 email: ""
 interests:
 - Computational Linguistics, Natural Language Processing
-- Speech & Language Disorders
-- Discrete Math, Statistics
-- Data Science, Data Visualization
 - R, Python
+- Data Science, Data Visualization
+- Discrete Math, Statistics
+- Speech & Language Disorders
 name: Grace Lawley
 organizations:
 - name: Oregon Health & Science University
   url: "https://www.ohsu.edu/xd/"
-role: Computer Science & Engineering PhD candidate
+role: PhD candidate, Computer Science & Engineering 
 social:
 - icon: paper-plane
   icon_pack: fas
@@ -41,9 +41,9 @@ social:
 superuser: true
 ---
 
-I am a PhD candidate in the Computer Science & Engineering program at [Oregon Health & Science University (OHSU)](https://www.ohsu.edu/xd/) in Portland, Oregon, USA. My advisor is [Dr. Steven Bedrick](https://www.bedrick.org/). My research involves developing computational methods to detect and quantify different aspects of the language of children with Autism Spectrum Disorder (ASD). 
+I am a Computer Science & Engineering PhD Candidate at [Oregon Health & Science University (OHSU)](https://www.ohsu.edu/xd/) in Portland, Oregon, USA. My advisor is [Dr. Steven Bedrick](https://www.bedrick.org/). My research involves developing computational methods to detect and quantify different aspects of the language of children with Autism Spectrum Disorder (ASD). 
 
-I am also a Data Science Mentor at [Posit Academy](https://posit.co/products/enterprise/academy/) (Posit was previously known as RStudio). I mentor small groups of working professionals as they develop and hone their data science skills using either R or Python. I also assist the Academy content development team in translating and adapting prior course material from R into Python.
+I am also a Data Science Mentor at [Posit Academy](https://posit.co/products/enterprise/academy/) (Posit was previously known as RStudio). I mentor small groups of working professionals as they develop and hone their data science skills in either R or Python. I also work with the Academy Python team on translating and adapting course material from R into Python as well as developing Python specific course material.
 
 <!---My interests include computational linguistics, speech & language disorders, statistics, and houseplants.-->
 

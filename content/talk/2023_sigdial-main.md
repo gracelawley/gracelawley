@@ -1,7 +1,7 @@
 ---
-title: "A Statistical Approach for Quantifying Group Difference in Topic Distributions Using Clinical Discourse Samples"
-event: "Main Conference, Oral Session 1"
-location: "SIGDIAL 2023 Conference, Prague, Czechia"
+title: A Statistical Approach for Quantifying Group Difference in Topic Distributions Using Clinical Discourse Samples
+event: Main Conference, Oral Session 1
+location: SIGDIAL 2023 Conference, Prague, Czechia
   
 tags: []
 
@@ -12,7 +12,7 @@ links:
 - icon: github
   icon_pack: fab
   name: Code
-  url: "https://github.com/gracelawley/lawley-sigdial-2023"
+  url: https://github.com/gracelawley/lawley-sigdial-2023
 - icon: desktop
   icon_pack: fas
   name: Conference Website

@@ -1,7 +1,7 @@
 ---
-title: "Computational Analysis of Backchannel Usage and Overlap Length in Autistic Children"
-event: "ICARD Workshop, Session 2"
-location: "ICARD Workshop @ SIGDIAL 2023 Conference, Prague, Czechia"
+title: Computational Analysis of Backchannel Usage and Overlap Length in Autistic Children
+event: ICARD Workshop, Session 2
+location: ICARD Workshop @ SIGDIAL 2023 Conference, Prague, Czechia
   
 tags: []
 

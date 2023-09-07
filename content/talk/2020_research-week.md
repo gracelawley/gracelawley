@@ -11,12 +11,12 @@ date_end: 2020-06-12T14:30:00
 links:
 - icon: images
   icon_pack: fas
-  name: slides
+  name: Slides
   url: https://glawley.netlify.com/2020_research-week/index.pdf
-- icon: desktop
-  icon_pack: fas
-  name: website
-  url: https://doi.org/10.6083/44558d72q
+#- icon: desktop
+#  icon_pack: fas
+#  name: DOI
+#  url: https://doi.org/10.6083/44558d72q
 
 
 abstract: ""

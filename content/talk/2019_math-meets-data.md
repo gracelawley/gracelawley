@@ -8,7 +8,7 @@ projects: []
 links:
 - icon: images
   icon_pack: fas
-  name: slides
+  name: Slides
   url: https://glawley.netlify.com/2019_math-meets-data
 
 tags: []

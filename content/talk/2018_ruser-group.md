@@ -9,11 +9,11 @@ projects:
 links:
 - icon: images
   icon_pack: fas
-  name: slides
+  name: Slides
   url: https://glawley.netlify.com/2018_ruser-group
 - icon: github
   icon_pack: fab
-  name: code
+  name: Code
   url: https://github.com/gracelawley/kuczaj-corpus
 
 

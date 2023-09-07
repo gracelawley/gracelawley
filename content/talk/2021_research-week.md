@@ -11,12 +11,12 @@ date_end: 2021-05-03T15:00:00
 links:
 - icon: images
   icon_pack: fas
-  name: slides
+  name: Slides
   url: https://glawley.netlify.com/2021_research-week/index.pdf
-- icon: desktop
-  icon_pack: fas
-  name: website
-  url: https://www.ohsu.edu/research-week
+# - icon: desktop
+#   icon_pack: fas
+#   name: website
+#   url: https://www.ohsu.edu/research-week
 
 
 abstract: ""

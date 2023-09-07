@@ -11,7 +11,7 @@ date_end: 2019-05-14T13:00:00
 links:
 - icon: images
   icon_pack: fas
-  name: slides
+  name: Slides
   url: https://glawley.netlify.com/2019_pedantry-seminar/index.pdf
 
 

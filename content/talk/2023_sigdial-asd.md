@@ -7,6 +7,7 @@ tags: []
 
 date: 2023-09-12T11:00:00
 date_end: 2023-09-12T11:40:00
+publishDate: 2023-09-01T00:00:00
 
 links:
 - icon: desktop

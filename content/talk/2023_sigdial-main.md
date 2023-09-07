@@ -5,8 +5,9 @@ location: SIGDIAL 2023 Conference, Prague, Czechia
   
 tags: []
 
-date: 2023-09-01T10:45:00
-date_end: 2023-09-01T12:30:00
+date: 2023-09-13T10:45:00
+date_end: 2023-09-13T12:30:00
+publishDate: 2023-09-01T00:00:00
 
 links:
 - icon: github

@@ -21,7 +21,7 @@ publishDate: ""
 publication_types: ["2"]
 
 # Publication name and optional abbreviated publication name.
-publication: "*Scientific Reports*"
+publication: "Scientific Reports"
 publication_short: 
 
 abstract: "Measurement of language atypicalities in Autism Spectrum Disorder (ASD) is cumbersome and costly. Better language outcome measures are needed. Using language transcripts, we generated Automated Language Measures (ALMs) and tested their validity. 169 participants (96 ASD, 28 TD, 45 ADHD) ages 7 to 17 were evaluated with the Autism Diagnostic Observation Schedule. Transcripts of one task were analyzed to generate seven ALMs: mean length of utterance in morphemes, number of different word roots (NDWR), um proportion, content maze proportion, unintelligible proportion, c-units per minute, and repetition proportion. With the exception of repetition proportion (p = .07
@@ -35,10 +35,9 @@ summary:
 tags:
 featured: false
 
-# links:
-# - name: ""
-#   url: ""
-url_pdf: "https://rdcu.be/cMBDE"
+links:
+ - name: "PDF"
+   url: files/publications/2021-sci-rep-salem-eval.pdf
 url_code: ''
 url_dataset: ''
 url_poster: ''
@@ -52,4 +51,6 @@ projects: []
 slides: ""
 ---
 
+<!--
 Salem, A.C., MacFarlane, H., Adams, J.R. et al. Evaluating atypical language in autism using automated language measures. Sci Rep 11, 10968 (2021). https://doi.org/10.1038/s41598-021-90304-5
+-->

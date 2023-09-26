@@ -41,8 +41,14 @@ social:
 superuser: true
 ---
 
-I am a Computer Science & Engineering PhD candidate at [Oregon Health & Science University (OHSU)](https://www.ohsu.edu/xd/) in Portland, Oregon, USA. My advisor is [Dr. Steven Bedrick](https://www.bedrick.org/). My research involves developing computational and statistical methods to detect and quantify different aspects of the language of children with Autism Spectrum Disorder (ASD). I am expecting to graduate by the end of 2023. 
+I am a Computer Science & Engineering PhD candidate at [Oregon Health & Science University (OHSU)](https://www.ohsu.edu/xd/) in Portland, Oregon, USA. My advisor is [Steven Bedrick](https://www.bedrick.org/). My PhD research involves developing computational and statistical methods to detect and quantify different aspects of the language of children with Autism Spectrum Disorder (ASD).
 
 I am also a Data Science Mentor at [Posit](https://posit.co/) (previously known as RStudio) for [Posit Academy](https://posit.co/products/enterprise/academy/). I mentor small groups of working professionals as they develop and hone their data science skills in R or Python. 
+
+I recently presented two papers at the SIGDIAL 2023 conference in September: ["A Statistical Approach for Quantifying Group Difference in Topic Distributions Using Clinical Discourse Samples"](https://grace.rbind.io/files/publications/2023-SIGDIAL-lawley-topic-modeling.pdf) and ["Computational Analysis of Backchannel Usage and Overlap Length in Autistic Children"](https://grace.rbind.io/files/publications/2023-SIGDIAL-lawley-backchannels.pdf).
+
+<span style="color: #006b01; font-weight=bold">**I am expecting to graduate by the end of 2023 and am currently on the job market!**</span>
+
+
 
 

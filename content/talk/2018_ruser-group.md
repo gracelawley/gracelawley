@@ -32,15 +32,17 @@ featured: false
 math: true
 ---
 
->Join us for a night of four talks from students in OHSU's Principles and Practice of Data Visualization, taught by Alison Hill, Steve Bedrick, and Jackie Wirz (https://github.com/apreshill/data-vis-labs-2018 | https://apreshill.github.io/data-vis-labs-2018/).
-
+>Join us for a night of four talks from students in OHSU's Principles and Practice of Data Visualization, taught by Alison Hill, Steve Bedrick, and Jackie Wirz -- https://github.com/apreshill/data-vis-labs-2018.
+>
 >Speakers:
-
+>
 >- Alex Salem: A Sentimental Analysis of Tolstoy
 >- Grace Lawley: A Sentiment Analysis of Child Language Acquisition Data
 >- Ryan Opel: Sole Mates: Analysis of Nike's BIKETOWN Sneaker Bikes
 >- Alexandra Michel: Winning at Twitter with ggplot: What's Up With Colorado Basin Water Use?
-
+>
 >Presentations will begin at 6:30 pm. Doors open 6:00 pm.
-
+>
 >Location: OHSU Robertson Life Science Building (RLSB) Room 3A001, at OHSU 2730 SW Moody Ave, Portland, OR 97201
+
+<!--https://apreshill.github.io/data-vis-labs-2018/)-->

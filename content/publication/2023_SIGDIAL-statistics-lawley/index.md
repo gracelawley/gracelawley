@@ -31,11 +31,11 @@ tags:
 featured: false
 
 links:
-- name: "PDF"
+- name: PDF
   url: files/publications/2023-SIGDIAL-lawley-topic-modeling.pdf
-- name: "Github"
+- name: Code
   url: "https://github.com/gracelawley/lawley-sigdial-2023"
-- name: "Slides"
+- name: Slides
   url: files/publications/2023-SIGDIAL-lawley-topic-modeling-slides.pdf
 url_pdf: 
 url_code: 

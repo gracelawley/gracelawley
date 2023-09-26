@@ -10,6 +10,10 @@ date_end: 2023-09-13T12:30:00
 publishDate: 2023-09-01T00:00:00
 
 links:
+- name: Slides
+  url: files/publications/2023-SIGDIAL-lawley-topic-modeling-slides.pdf
+- name: PDF
+  url: files/publications/2023-SIGDIAL-lawley-topic-modeling.pdf
 - icon: github
   icon_pack: fab
   name: Code

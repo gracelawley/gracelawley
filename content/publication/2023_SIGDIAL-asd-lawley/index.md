@@ -17,7 +17,7 @@ publishDate: ""
 publication_types: ["1"]
 
 # Publication name and optional abbreviated publication name.
-publication: "Proceedings of the 24th Annual Meeting of the Special Interest Group on Discourse and Dialogue (SIGDIAL), Workshop on Connecting Multiple Disciplines to AI Techniques in Interaction-centric Autism Research and Diagnosis (ICARD)"
+publication: "Proceedings of the First Workshop on Connecting Multiple Disciplines to AI Techniques in Interaction-centric Autism Research and Diagnosis (ICARD 2023)"
 publication_short: ""
 
 abstract: "Backchanneling (e.g., *right*, *okay*, *uhhuh*) during a dialogue signals that a person is engaged and following along with what is being said. Although backchannels often overlap with other utterances, they are not interpreted as an attempt to take the floor when used successfully. Limited work has been done on investigating the frequency and overlap length of backchannels in the language of Autistic children. After controlling for age, sex, and IQ, we found that Autistic children used significantly less backchannels than their Typically Developing (TD) peers. Additionally, we found that Autistic children were less likely than TD children to produce a backchannel with a greater overlap length."
@@ -46,3 +46,8 @@ projects: []
 
 slides: ""
 ---
+
+**ACL Anthology**: <https://aclanthology.org/2023.icard-1.3/>
+
+
+

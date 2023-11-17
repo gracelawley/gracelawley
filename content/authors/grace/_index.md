@@ -6,7 +6,7 @@ education:
   courses:
   - course: PhD in Computer Science & Engineering
     institution: Oregon Health & Science University
-    year: Expected 2023
+    year: Expected Dec 2023
   - course: BA in Mathematics
     institution: Lewis & Clark College
     year: 2017
@@ -25,7 +25,7 @@ role: PhD candidate, Computer Science & Engineering
 social:
 - icon: paper-plane
   icon_pack: fas
-  link: mailto:gracelawley@gmail.com
+  link: mailto:golawley@gmail.com
 #- icon: twitter
 #  icon_pack: fab
 #  link: https://twitter.com/graceolawley
@@ -47,7 +47,7 @@ I am also a Data Science Mentor at [Posit](https://posit.co/) (previously known 
 
 I recently presented two papers at the SIGDIAL 2023 conference in September: ["A Statistical Approach for Quantifying Group Difference in Topic Distributions Using Clinical Discourse Samples"](https://grace.rbind.io/files/publications/2023-SIGDIAL-lawley-topic-modeling.pdf) and ["Computational Analysis of Backchannel Usage and Overlap Length in Autistic Children"](https://grace.rbind.io/files/publications/2023-SIGDIAL-lawley-backchannels.pdf).
 
-<span style="color: #006b01; font-weight=bold">**I am expecting to graduate by the end of 2023 and am currently on the job market!**</span>
+<span style="color: #006b01; font-weight=bold">**I am expecting to graduate in December 2023 and am currently on the job market!**</span>
 
 
 

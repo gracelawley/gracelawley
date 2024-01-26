@@ -41,7 +41,7 @@ social:
 superuser: true
 ---
 
-I am a Computer Science & Engineering PhD candidate (successfully defended 12/13/2023) at [Oregon Health & Science University (OHSU)](https://www.ohsu.edu/xd/) in Portland, Oregon, USA. My area of expertise is computational linguistics and natural language processing, with my PhD research focusing on the development of computational and statistical methods to detect and quantify dierent aspects of the language of children with Autism Spectrum Disorder. My advisor is [Steven Bedrick](https://www.bedrick.org/).
+I am a Computer Science & Engineering PhD candidate (successfully defended 12/13/2023) at [Oregon Health & Science University (OHSU)](https://www.ohsu.edu/xd/) in Portland, Oregon, USA. My area of expertise is computational linguistics and natural language processing, with my PhD research focusing on the development of computational and statistical methods to detect and quantify different aspects of the language of children with Autism Spectrum Disorder. My advisor is [Dr. Steven Bedrick](https://www.bedrick.org/).
 
 I am also a Data Science Mentor at [Posit](https://posit.co/) (previously known as RStudio) for [Posit Academy](https://posit.co/products/enterprise/academy/), where I mentor small groups of working professionals as they develop and hone their data science skills in R or Python. 
 

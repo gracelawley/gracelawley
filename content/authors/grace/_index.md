@@ -6,7 +6,7 @@ education:
   courses:
   - course: PhD in Computer Science & Engineering
     institution: Oregon Health & Science University
-    year: Expected Jan 2024
+    year: 2024
   - course: BA in Mathematics
     institution: Lewis & Clark College
     year: 2017
@@ -41,13 +41,13 @@ social:
 superuser: true
 ---
 
-I am a Computer Science & Engineering PhD candidate (successfully defended 12/13/2023) at [Oregon Health & Science University (OHSU)](https://www.ohsu.edu/xd/) in Portland, Oregon, USA. My area of expertise is computational linguistics and natural language processing, with my PhD research focusing on the development of computational and statistical methods to detect and quantify different aspects of the language of children with Autism Spectrum Disorder. My advisor is [Dr. Steven Bedrick](https://www.bedrick.org/).
+I am a recent Computer Science & Engineering PhD graduate -- successfully defended 12.13.2023, official degree expected by 2.29.2024 -- at [Oregon Health & Science University (OHSU)](https://www.ohsu.edu/xd/) in Portland, Oregon, USA. My area of expertise is computational linguistics and natural language processing, with my PhD research focusing on the development of computational and statistical methods to detect and quantify different aspects of the language of children with Autism Spectrum Disorder. My advisor is [Dr. Steven Bedrick](https://www.bedrick.org/).
 
 I am also a Data Science Mentor at [Posit](https://posit.co/) (previously known as RStudio) for [Posit Academy](https://posit.co/products/enterprise/academy/), where I mentor small groups of working professionals as they develop and hone their data science skills in R or Python. 
 
-I recently presented two papers at the SIGDIAL 2023 conference in September: ["A Statistical Approach for Quantifying Group Difference in Topic Distributions Using Clinical Discourse Samples"](https://grace.rbind.io/files/publications/2023-SIGDIAL-lawley-topic-modeling.pdf) and ["Computational Analysis of Backchannel Usage and Overlap Length in Autistic Children"](https://grace.rbind.io/files/publications/2023-SIGDIAL-lawley-backchannels.pdf).
+I recently presented two papers at the SIGDIAL conference in September 2023: ["A Statistical Approach for Quantifying Group Difference in Topic Distributions Using Clinical Discourse Samples"](https://grace.rbind.io/files/publications/2023-SIGDIAL-lawley-topic-modeling.pdf) and ["Computational Analysis of Backchannel Usage and Overlap Length in Autistic Children"](https://grace.rbind.io/files/publications/2023-SIGDIAL-lawley-backchannels.pdf).
 
-<span style="color: #006b01; font-weight=bold">**I am currently on the job market! I successfully defended my PhD in Computer Science & Engineering last month (December 2023) and am looking for a full-time industry position. I am interested in research scientist and data scientist roles, in both clinical and non-clinical areas.**</span>
+<span style="color: #006b01; font-weight=bold">**I am currently on the job market! I am interested in data scientist and research scientist industry roles, in both clinical and non-clinical areas.**</span>
 
 
 

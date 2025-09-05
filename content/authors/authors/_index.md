@@ -19,9 +19,9 @@ interests:
 - Speech & Language Disorders
 name: Grace Lawley
 organizations:
-- name: Oregon Health & Science University
-  url: "https://www.ohsu.edu/xd/"
-role: PhD, Computer Science & Engineering 
+- name: Lewis & Clark College
+#  url: "https://www.ohsu.edu/xd/"
+role: Visiting Professor</br>Data Science and Statistics
 social:
 - icon: paper-plane
   icon_pack: fas
@@ -41,13 +41,20 @@ social:
 superuser: true
 ---
 
-I am a recent Computer Science & Engineering PhD graduate from [Oregon Health & Science University (OHSU)](https://www.ohsu.edu/xd/) in Portland, Oregon, USA. My area of interest is computational linguistics and natural language processing, with my PhD research focusing on the development of computational and statistical methods to detect and quantify different aspects of the language of children with Autism Spectrum Disorder.
+I am a Visiting Professor in Data Science and Statistics at Lewis & Clark College in Portland, Oregon.
 
-I work part time as a Data Science Mentor at [Posit](https://posit.co/) (previously known as RStudio) for [Posit Academy](https://posit.co/products/enterprise/academy/), where I mentor small groups of working professionals as they develop and hone their data science skills in Python or R. 
+I earned my PhD in Computer Science & Engineering from Oregon Health & Science University (OHSU) in 2024 and hold a BA in Mathematics from Lewis & Clark College.
 
-I recently presented two papers at the SIGDIAL conference in September 2023: ["A Statistical Approach for Quantifying Group Difference in Topic Distributions Using Clinical Discourse Samples"](https://grace.rbind.io/files/publications/2023-SIGDIAL-lawley-topic-modeling.pdf) and ["Computational Analysis of Backchannel Usage and Overlap Length in Autistic Children"](https://grace.rbind.io/files/publications/2023-SIGDIAL-lawley-backchannels.pdf).
 
-<span style="color: #006b01; font-weight=bold">**I am currently on the job market! I am interested in data scientist and research scientist industry roles, in both clinical and non-clinical areas.**</span>
+My areas of interest include data science, statistics, and computational linguistics. 
+My PhD research focused on the development of computational and statistical methods to detect and quantify different aspects of the language of children with Autism Spectrum Disorder.
+You can read more about work in the following papers that I presented at SIGDIAL in September 2023:["A Statistical Approach for Quantifying Group Difference in Topic Distributions Using Clinical Discourse Samples"](https://grace.rbind.io/files/publications/2023-SIGDIAL-lawley-topic-modeling.pdf) and ["Computational Analysis of Backchannel Usage and Overlap Length in Autistic Children"](https://grace.rbind.io/files/publications/2023-SIGDIAL-lawley-backchannels.pdf).
+
+
+I am also a contractor at [Posit](https://posit.co/) (formerly known as RStudio), where I work as a Data Science Mentor for [Posit Academy](https://posit.co/products/enterprise/academy/).
+There I lead data science courses in R and Python for working professionals from a wide range of industries and backgrounds.
+
+
 
 
 

@@ -42,7 +42,6 @@ superuser: true
 ---
 
 I am a Visiting Professor in Data Science and Statistics at Lewis & Clark College in Portland, Oregon.
-
 I earned my PhD in Computer Science & Engineering from Oregon Health & Science University (OHSU) in 2024 and hold a BA in Mathematics from Lewis & Clark College.
 
 
